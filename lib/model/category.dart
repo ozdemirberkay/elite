@@ -5,12 +5,12 @@ class Category {
   String? categoryImgUrl;
   String title;
 
-  List<Article> articles;
+  List<Article>? articles;
 
   Category({
     required this.id,
     this.categoryImgUrl,
     required this.title,
-    required this.articles,
+    this.articles,
   });
 }

@@ -14,7 +14,7 @@ TextFormField quizEditTextStyle(var hintText, {isPassword = true}) {
     style: primaryTextStyle(),
     obscureText: isPassword,
     decoration: InputDecoration(
-      contentPadding: EdgeInsets.fromLTRB(16, 22, 16, 22),
+      contentPadding: const EdgeInsets.fromLTRB(16, 22, 16, 22),
       hintText: hintText,
       border: InputBorder.none,
       hintStyle: primaryTextStyle(),
@@ -55,7 +55,7 @@ class quizButtonState extends State<quizButton> {
       onTap: widget.onPressed,
       child: Container(
         decoration: boxDecoration(bgColor: quiz_colorPrimary, radius: 16),
-        padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
@@ -104,7 +104,7 @@ class quizButtonAddState extends State<quizButtonAdd> {
       onTap: widget.onPressed,
       child: Container(
         decoration: boxDecoration(bgColor: quiz_colorPrimary, radius: 16),
-        padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
@@ -174,7 +174,7 @@ class quizTopBarState extends State<quizTopBar> {
 
 Container quizHeaderText(var text) {
   return Container(
-    margin: EdgeInsets.only(top: 16),
+    margin: const EdgeInsets.only(top: 16),
     child: Text(
       text,
       maxLines: 2,
@@ -279,7 +279,7 @@ class PinEntryTextFieldState extends State<PinEntryTextField> {
 
     return Container(
       width: widget.fieldWidth,
-      margin: EdgeInsets.only(right: 10.0),
+      margin: const EdgeInsets.only(right: 10.0),
       child: TextField(
         controller: _textControllers[i],
         keyboardType: TextInputType.number,

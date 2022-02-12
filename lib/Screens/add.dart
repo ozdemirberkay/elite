@@ -1,9 +1,7 @@
 import 'package:elite/Screens/dashboard.dart';
-import 'package:elite/Screens/kategoriler.dart';
 import 'package:elite/main.dart';
 import 'package:elite/utils/AppWidget.dart';
 import 'package:elite/utils/QuizColors.dart';
-import 'package:elite/utils/QuizConstant.dart';
 import 'package:elite/utils/QuizWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -42,11 +40,11 @@ class _AddState extends State<Add> {
                     offset: const Offset(0, 3.0)),
               ],
             ),
-            margin: EdgeInsets.all(12.0),
+            margin: const EdgeInsets.all(12.0),
             child: quizEditTextStyle("Makele Başlığı", isPassword: false),
           ),
           Container(
-            margin: EdgeInsets.all(12.0),
+            margin: const EdgeInsets.all(12.0),
             decoration: BoxDecoration(
               color: context.cardColor,
               border: Border.all(
@@ -93,7 +91,7 @@ class _AddState extends State<Add> {
             ),
           ),
           Container(
-              margin: EdgeInsets.all(12.0),
+              margin: const EdgeInsets.all(12.0),
               decoration: BoxDecoration(
                 color: context.cardColor,
                 border: Border.all(
@@ -120,7 +118,7 @@ class _AddState extends State<Add> {
                   maxLines: null,
                   style: primaryTextStyle(),
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.fromLTRB(16, 22, 16, 22),
+                    contentPadding: const EdgeInsets.fromLTRB(16, 22, 16, 22),
                     hintText: "Makale",
                     border: InputBorder.none,
                     hintStyle: primaryTextStyle(),
@@ -128,7 +126,7 @@ class _AddState extends State<Add> {
                 ),
               )),
           Container(
-            margin: EdgeInsets.all(12.0),
+            margin: const EdgeInsets.all(12.0),
             decoration: BoxDecoration(
               color: context.cardColor,
               border: Border.all(
@@ -214,7 +212,7 @@ class _AddState extends State<Add> {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(12.0),
+            margin: const EdgeInsets.all(12.0),
             child: quizButtonAdd(
               textContent: "Soru Ekle",
               onPressed: () {
@@ -227,7 +225,7 @@ class _AddState extends State<Add> {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(12.0),
+            margin: const EdgeInsets.all(12.0),
             child: quizButton(
               textContent: "Gönder",
               onPressed: () {

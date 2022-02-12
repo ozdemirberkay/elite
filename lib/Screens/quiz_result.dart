@@ -32,7 +32,7 @@ class _QuizResultState extends State<QuizResult> {
             alignment: Alignment.topCenter,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.only(left: 8),
                 alignment: Alignment.centerLeft,
                 width: MediaQuery.of(context).size.width,
                 height: 50,

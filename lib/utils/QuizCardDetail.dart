@@ -71,7 +71,7 @@ class QuizCardDetailsState extends State<QuizCardDetails> {
                 width: double.infinity,
               ),
               Container(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 height: 500.0,
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -96,7 +96,7 @@ class QuizCardDetailsState extends State<QuizCardDetails> {
                     decoration: BoxDecoration(
                         //borderRadius: BorderRadius.circular(20.0)
                         ),
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       left: 20.0,
                       right: 10.0,
                       top: 20.0,

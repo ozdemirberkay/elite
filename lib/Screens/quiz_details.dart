@@ -81,10 +81,10 @@ class quizList extends StatelessWidget {
   Widget build(BuildContext context) {
     width = context.width();
     return Container(
-      margin: EdgeInsets.only(left: 16, bottom: 16, right: 16),
+      margin: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
       decoration: boxDecoration(
           radius: 10, showShadow: true, bgColor: context.cardColor),
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -95,7 +95,7 @@ class quizList extends StatelessWidget {
                     shape: BoxShape.circle, color: quiz_color_setting),
                 width: width / 6.5,
                 height: width / 6.5,
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Image.asset(model.image),
               ),
               16.width,

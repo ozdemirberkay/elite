@@ -44,8 +44,8 @@ class _CategoriesState extends State<Categories> {
             children: <Widget>[
               ClipRRect(
                 borderRadius: const BorderRadius.only(
-                    topLeft: const Radius.circular(16.0),
-                    topRight: const Radius.circular(16.0)),
+                    topLeft: Radius.circular(16.0),
+                    topRight: Radius.circular(16.0)),
                 child: CachedNetworkImage(
                   placeholder: placeholderWidgetFn() as Widget Function(
                       BuildContext, String)?,
@@ -143,7 +143,7 @@ class _CategoriesState extends State<Categories> {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: EdgeInsets.all(8),
+                      margin: const EdgeInsets.all(8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -170,16 +170,17 @@ class _CategoriesState extends State<Categories> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                text(mListings[index].quizName,
-                                        fontSize: textSizeMedium,
-                                        maxLine: 2,
-                                        fontFamily: fontMedium)
-                                    .paddingOnly(
-                                        top: 8, left: 16, right: 16, bottom: 8),
-                                text(mListings[index].totalQuiz,
-                                        textColor: quiz_textColorSecondary)
-                                    .paddingOnly(
-                                        left: 16, right: 16, bottom: 16),
+                                text(
+                                  mListings[index].quizName,
+                                  maxLine: 2,
+                                  fontFamily: fontMedium,
+                                ).paddingOnly(
+                                    top: 4, left: 16, right: 16, bottom: 4),
+                                text(
+                                  mListings[index].totalQuiz,
+                                  textColor: quiz_textColorSecondary,
+                                  fontSize: textSizeMedium,
+                                ).paddingOnly(left: 16, right: 16, bottom: 16),
                                 LinearProgressIndicator(
                                   value: 0.5,
                                   backgroundColor:
