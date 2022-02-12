@@ -17,7 +17,7 @@ class ArticleDetails extends StatefulWidget {
 class _ArticleDetailsState extends State<ArticleDetails> {
   @override
   Widget build(BuildContext context) {
-    Article article = Article();
+    Article2 article = Article2();
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('categories')
         .doc(widget.categoryId)
@@ -40,6 +40,11 @@ class _ArticleDetailsState extends State<ArticleDetails> {
               body: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(
+                  child: Image(
+                    image: NetworkImage(article.imgUrl.toString()),
+                  ),
+                ),
                 Text(article.title.toString()),
                 Text(article.imgUrl.toString()),
                 Text(article.body.toString()),

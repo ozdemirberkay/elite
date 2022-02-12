@@ -15,3 +15,19 @@ class Article {
     this.question,
   });
 }
+
+class Article2 {
+  String? id;
+  String? title;
+  String? body;
+  String? imgUrl;
+  List<Question>? question;
+
+  Article2({
+    this.id,
+    this.title,
+    this.body,
+    this.imgUrl,
+    this.question,
+  });
+}
