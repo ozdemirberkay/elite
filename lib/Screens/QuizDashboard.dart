@@ -19,7 +19,7 @@ class _QuizDashboardState extends State<QuizDashboard> {
   var selectedIndex = 0;
 
   var pages = [
-    QuizHome(),
+    QuizAllList(),
     QuizAllList(),
     QuizProfile(),
   ];
@@ -97,9 +97,9 @@ class _QuizDashboardState extends State<QuizDashboard> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              quizItem(0, quiz_ic_homes, "Home"),
-              quizItem(1, quiz_ic_quiz, "Quiz"),
-              quizItem(2, quiz_ic_user, "Profile"),
+              quizItem(0, quiz_ic_homes, "Makaleler"),
+              quizItem(1, quiz_ic_quiz, "Ekle"),
+              quizItem(2, quiz_ic_user, "Skorlar"),
             ],
           ),
         ),

@@ -8,9 +8,7 @@ import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizDataGenerator.dart';
 import 'package:elite/utils/QuizStrings.dart';
 import 'package:elite/utils/QuizWidget.dart';
-
 import 'QuizNewList.dart';
-import 'QuizSearch.dart';
 
 class QuizHome extends StatefulWidget {
   static String tag = '/QuizHome';
@@ -39,37 +37,11 @@ class _QuizHomeState extends State<QuizHome> {
             Text(quiz_lbl_hi_antonio, style: boldTextStyle(size: 24)),
             8.height,
             Text(
-              quiz_lbl_what_would_you_like_to_learn_n_today_search_below,
+              "Makaleleri okuyup, soruları cevapla",
               style: primaryTextStyle(color: quiz_textColorSecondary),
               textAlign: TextAlign.center,
             ),
             24.height,
-            Container(
-              margin: EdgeInsets.all(16.0),
-              decoration: boxDecoration(
-                  radius: 10, showShadow: true, bgColor: context.cardColor),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  quizEditTextStyle(quiz_lbl_search, isPassword: false)
-                      .expand(),
-                  Container(
-                    margin: EdgeInsets.only(right: 10),
-                    decoration: boxDecoration(
-                        radius: 10,
-                        showShadow: false,
-                        bgColor: quiz_colorPrimary),
-                    padding: EdgeInsets.all(10),
-                    child: Icon(Icons.search, color: quiz_white),
-                  ).onTap(
-                    () {
-                      QuizSearch().launch(context);
-                      setState(() {});
-                    },
-                  )
-                ],
-              ),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

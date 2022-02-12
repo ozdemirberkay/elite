@@ -1,3 +1,4 @@
+import 'package:elite/Screens/QuizDashboard.dart';
 import 'package:elite/Screens/QuizSignIn.dart';
 import 'package:elite/store/AppStore.dart';
 import 'package:elite/utils/AppTheme.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       builder: (_) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Online Quiz${!isMobile ? ' ${platformName()}' : ''}',
-        home: QuizSignIn(),
+        home: QuizDashboard(),
         theme: !appStore.isDarkModeOn
             ? AppThemeData.lightTheme
             : AppThemeData.darkTheme,
