@@ -1,7 +1,23 @@
+import 'package:elite/Screens/QuizSignIn.dart';
 import 'package:elite/screen/main_srcreen.dart';
+import 'package:elite/store/AppStore.dart';
+import 'package:elite/utils/AppTheme.dart';
+import 'package:elite/utils/QuizConstant.dart';
+import 'package:elite/utils/QuizDataGenerator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:nb_utils/nb_utils.dart';
 
-void main() {
+AppStore appStore = AppStore();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await initialize(aLocaleLanguageList: languageList());
+
+  appStore.toggleDarkMode(value: getBoolAsync(isDarkModeOnPref));
+
+  defaultToastGravityGlobal = ToastGravity.BOTTOM;
+
   runApp(const MyApp());
 }
 
@@ -10,6 +26,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Observer(
+      builder: (_) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Online Quiz${!isMobile ? ' ${platformName()}' : ''}',
+        home: QuizSignIn(),
+        theme: !appStore.isDarkModeOn
+            ? AppThemeData.lightTheme
+            : AppThemeData.darkTheme,
+        navigatorKey: navigatorKey,
+        scrollBehavior: SBehavior(),
+        supportedLocales: LanguageDataModel.languageLocales(),
+        localeResolutionCallback: (locale, supportedLocales) => locale,
+      ),
+    );
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
