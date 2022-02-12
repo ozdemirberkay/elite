@@ -142,7 +142,7 @@ class _CategoriesState extends State<Categories> {
                         ],
                       ),
                     ).cornerRadiusWithClipRRect(16).onTap(() {
-                      ArticleDetails(
+                      Articles(
                         categoryID: categoryList[index].id,
                         cateGoryTitle: categoryList[index].title,
                       ).launch(context);
