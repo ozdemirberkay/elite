@@ -35,12 +35,15 @@ class _ArticleDetailsState extends State<ArticleDetails> {
 
   @override
   Widget build(BuildContext context) {
-    final CollectionReference articles = FirebaseFirestore.instance
-        .collection('categories/' + widget.categoryID);
+    final DocumentReference<Map<String, dynamic>> articles = FirebaseFirestore
+        .instance
+        .collection('categories')
+        .doc(widget.categoryID);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: FutureBuilder<DocumentSnapshot>(
-          future: articles.doc(widget.categoryID).get(),
+          future: articles.get(),
           builder:
               (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
             if (snapshot.hasError) {
@@ -55,17 +58,24 @@ class _ArticleDetailsState extends State<ArticleDetails> {
                 )),
               );
             }
+            Map<String, dynamic> data =
+                snapshot.data!.data() as Map<String, dynamic>;
+            QuizTestModel quizTestModel = QuizTestModel();
+            quizTestModel.image = data["imgUrl"].toString();
+            quizTestModel.heading = "Eklenecek";
+            quizTestModel.description = "Burası da eklencek";
+            mListings.add(quizTestModel);
 
-            var article =
-                snapshot.data!.get("s").map((DocumentSnapshot document) {
-              Map<String, dynamic> data =
-                  document.data()! as Map<String, dynamic>;
-              QuizTestModel quizTestModel = QuizTestModel();
-              quizTestModel.image = data["imgUrl"].toString();
-              quizTestModel.heading = "Eklenecek";
-              quizTestModel.description = "Burası da eklencek";
-              mListings.add(quizTestModel);
-            }).toList();
+            //   var article =
+            //       snapshot.data!.data().map((DocumentSnapshot document) {
+            //     Map<String, dynamic> data =
+            //         document.data()! as Map<String, dynamic>;
+            //     QuizTestModel quizTestModel = QuizTestModel();
+            //     quizTestModel.image = data["imgUrl"].toString();
+            //     quizTestModel.heading = "Eklenecek";
+            //     quizTestModel.description = "Burası da eklencek";
+            //     mListings.add(quizTestModel);
+            //   }).toList();
 
             return Column(
               children: <Widget>[
