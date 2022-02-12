@@ -1,11 +1,11 @@
 class Question {
-  String id;
-  String question;
-  String answer;
-  String a;
-  String b;
-  String c;
-  String d;
+  String? id;
+  String? question;
+  String? answer;
+  String? a;
+  String? b;
+  String? c;
+  String? d;
 
   Question({
     required this.id,
