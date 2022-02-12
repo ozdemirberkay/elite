@@ -158,7 +158,7 @@ class _ScoresState extends State<Scores> {
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text("Loading");
+                return CircularProgressIndicator();
               }
 
               var category =
