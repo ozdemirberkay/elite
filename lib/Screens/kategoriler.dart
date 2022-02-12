@@ -9,7 +9,6 @@ import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizConstant.dart';
 
 import '../main.dart';
-import 'category_details.dart';
 import 'quiz_details.dart';
 
 class Categories extends StatefulWidget {
@@ -144,7 +143,7 @@ class _CategoriesState extends State<Categories> {
                         ],
                       ),
                     ).cornerRadiusWithClipRRect(16).onTap(() {
-                      CategoryDetails(id: "art").launch(context);
+                      QuizDetails().launch(context);
                     });
                   },
                 );
