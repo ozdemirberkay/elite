@@ -173,18 +173,44 @@ class _ScoresState extends State<Scores> {
               }).toList();
 
               return Expanded(
-                child: ListView.builder(
-                  itemCount: mListings.length,
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      child: ListTile(
-                        leading: Image.network(mListings[index].quizImage),
-                        title: Text(mListings[index].quizName),
-                        subtitle: Text("çözülen"),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: context.cardColor,
+                      border: Border.all(
+                        color: appStore.isDarkModeOn
+                            ? cardDarkColor
+                            : quiz_ShadowColor,
                       ),
-                    );
-                  },
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                            color: appStore.isDarkModeOn
+                                ? cardDarkColor
+                                : quiz_ShadowColor,
+                            blurRadius: 10,
+                            spreadRadius: 2,
+                            offset: const Offset(0, 3.0)),
+                      ],
+                    ),
+                    child: ListView.builder(
+                      itemCount: mListings.length,
+                      shrinkWrap: true,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage:
+                                NetworkImage(mListings[index].quizImage),
+                          ),
+                          title: Text(mListings[index].quizName),
+                          subtitle: Text("çözülen"),
+                        );
+                      },
+                    ),
+                  ),
                 ),
               );
             },
