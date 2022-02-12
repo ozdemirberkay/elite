@@ -33,20 +33,20 @@ class _QuizAllListState extends State<QuizAllList> {
       crossAxisCount: 4,
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
-      staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+      staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
       scrollDirection: Axis.vertical,
       itemCount: mListings.length,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Container(
-          margin: EdgeInsets.all(8),
+          margin: const EdgeInsets.all(8),
           child: Column(
             children: <Widget>[
               ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16.0),
-                    topRight: Radius.circular(16.0)),
+                borderRadius: const BorderRadius.only(
+                    topLeft: const Radius.circular(16.0),
+                    topRight: const Radius.circular(16.0)),
                 child: CachedNetworkImage(
                   placeholder: placeholderWidgetFn() as Widget Function(
                       BuildContext, String)?,
@@ -57,10 +57,10 @@ class _QuizAllListState extends State<QuizAllList> {
                 ),
               ),
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16.0),
-                      bottomRight: Radius.circular(16.0)),
+                      bottomRight: const Radius.circular(16.0)),
                   // color: quiz_white,
                 ),
                 child: Column(
@@ -92,19 +92,19 @@ class _QuizAllListState extends State<QuizAllList> {
       crossAxisCount: 4,
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
-      staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+      staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
       scrollDirection: Axis.vertical,
       itemCount: mListings.length,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Container(
-          margin: EdgeInsets.all(8),
+          margin: const EdgeInsets.all(8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(16.0),
                     topRight: Radius.circular(16.0)),
                 child: CachedNetworkImage(
@@ -118,7 +118,7 @@ class _QuizAllListState extends State<QuizAllList> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(16.0),
                       bottomRight: Radius.circular(16.0)),
                   color: context.cardColor,
@@ -137,7 +137,8 @@ class _QuizAllListState extends State<QuizAllList> {
                     LinearProgressIndicator(
                       value: 0.5,
                       backgroundColor: textSecondaryColor.withOpacity(0.2),
-                      valueColor: AlwaysStoppedAnimation<Color>(quiz_green),
+                      valueColor:
+                          const AlwaysStoppedAnimation<Color>(quiz_green),
                     ).paddingOnly(left: 16, right: 16, bottom: 16),
                   ],
                 ),
@@ -161,14 +162,14 @@ class _QuizAllListState extends State<QuizAllList> {
           child: Container(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Container(
                   width: width,
                   decoration: boxDecoration(
                       radius: spacing_middle,
                       bgColor: context.cardColor,
                       showShadow: false),
-                  margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   child: text(
                     "KATEGORİLER",
                     fontSize: textSizeMedium,
@@ -179,9 +180,9 @@ class _QuizAllListState extends State<QuizAllList> {
                   ),
                 ),
                 SingleChildScrollView(
-                  physics: ScrollPhysics(),
+                  physics: const ScrollPhysics(),
                   child: Container(
-                    margin: EdgeInsets.only(right: 8, left: 8),
+                    margin: const EdgeInsets.only(right: 8, left: 8),
                     child: quizCompleted(),
                   ),
                 ),

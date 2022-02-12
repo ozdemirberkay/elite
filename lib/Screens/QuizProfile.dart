@@ -2,15 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:elite/Screens/QuizEditProfile.dart';
-import 'package:elite/Screens/QuizSettings.dart';
 import 'package:elite/main.dart';
 import 'package:elite/model/QuizModels.dart';
 import 'package:elite/utils/AppWidget.dart';
 import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizConstant.dart';
 import 'package:elite/utils/QuizDataGenerator.dart';
-import 'package:elite/utils/QuizImages.dart';
 import 'package:elite/utils/QuizStrings.dart';
 
 class QuizProfile extends StatefulWidget {
@@ -38,11 +35,11 @@ class _QuizProfileState extends State<QuizProfile> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Icon(Icons.light_mode, color: Colors.amber),
+                const Icon(Icons.light_mode, color: Colors.amber),
                 Switch(
                   value: appStore.isDarkModeOn,
                   activeColor: appColorPrimary,
@@ -55,14 +52,14 @@ class _QuizProfileState extends State<QuizProfile> {
               ],
             ),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Container(
             width: width,
             decoration: boxDecoration(
                 radius: spacing_middle,
                 bgColor: context.cardColor,
                 showShadow: false),
-            margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+            margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
             child: Row(
               children: <Widget>[
                 text(
@@ -84,7 +81,7 @@ class _QuizProfileState extends State<QuizProfile> {
                   scrollDirection: Axis.vertical,
                   itemCount: mList1.length,
                   shrinkWrap: true,
-                  physics: ScrollPhysics(),
+                  physics: const ScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) =>
                       GestureDetector(
                         onTap: () {},
@@ -136,7 +133,7 @@ class _QuizProfileState extends State<QuizProfile> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           child: Container(color: context.cardColor, child: imgview),
         ),
       ),

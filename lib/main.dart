@@ -3,7 +3,6 @@ import 'package:elite/Screens/QuizDashboard.dart';
 import 'package:elite/store/AppStore.dart';
 import 'package:elite/utils/AppTheme.dart';
 import 'package:elite/utils/QuizConstant.dart';
-import 'package:elite/utils/QuizDataGenerator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -12,7 +11,7 @@ AppStore appStore = AppStore();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await initialize(aLocaleLanguageList: languageList());
+  await initialize();
 
   appStore.toggleDarkMode(value: getBoolAsync(isDarkModeOnPref));
 
@@ -36,8 +35,6 @@ class MyApp extends StatelessWidget {
             : AppThemeData.darkTheme,
         navigatorKey: navigatorKey,
         scrollBehavior: SBehavior(),
-        supportedLocales: LanguageDataModel.languageLocales(),
-        localeResolutionCallback: (locale, supportedLocales) => locale,
       ),
     );
   }

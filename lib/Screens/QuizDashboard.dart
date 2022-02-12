@@ -78,18 +78,19 @@ class _QuizDashboardState extends State<QuizDashboard> {
           border: Border.all(
             color: appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
           ),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          borderRadius: const BorderRadius.only(
+              topLeft: const Radius.circular(20),
+              topRight: const Radius.circular(20)),
           boxShadow: [
             BoxShadow(
                 color: appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
                 blurRadius: 10,
                 spreadRadius: 2,
-                offset: Offset(0, 3.0)),
+                offset: const Offset(0, 3.0)),
           ],
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 0.0, right: 0, top: 8),
+          padding: const EdgeInsets.only(left: 0.0, right: 0, top: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
