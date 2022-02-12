@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:elite/main.dart';
@@ -17,12 +18,12 @@ class Scores extends StatefulWidget {
 
 class _ScoresState extends State<Scores> {
   late List<QuizBadgesModel> mList;
-  late List<QuizScoresModel> mList1;
+  late List<QuizScoresModel> eskiKategoriler;
 
   @override
   void initState() {
     super.initState();
-    mList1 = quizScoresData();
+    eskiKategoriler = quizScoresData();
   }
 
   @override
@@ -60,7 +61,7 @@ class _ScoresState extends State<Scores> {
               width: MediaQuery.of(context).size.width - 32,
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
-                  itemCount: mList1.length,
+                  itemCount: eskiKategoriler.length,
                   shrinkWrap: true,
                   physics: const ScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) =>
@@ -72,7 +73,7 @@ class _ScoresState extends State<Scores> {
                               CachedNetworkImage(
                                 placeholder: placeholderWidgetFn() as Widget
                                     Function(BuildContext, String)?,
-                                imageUrl: mList1[index].img,
+                                imageUrl: eskiKategoriler[index].img,
                                 height: 50,
                                 width: 50,
                                 fit: BoxFit.fill,
@@ -82,7 +83,7 @@ class _ScoresState extends State<Scores> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(mList1[index].title,
+                                  Text(eskiKategoriler[index].title,
                                       style: boldTextStyle(
                                           color: appStore.isDarkModeOn
                                               ? white
@@ -93,9 +94,9 @@ class _ScoresState extends State<Scores> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      text(mList1[index].totalQuiz,
+                                      text(eskiKategoriler[index].totalQuiz,
                                           textColor: quiz_textColorSecondary),
-                                      text(mList1[index].scores,
+                                      text(eskiKategoriler[index].scores,
                                           textColor: quiz_textColorSecondary,
                                           fontSize: textSizeMedium,
                                           fontFamily: fontRegular)
