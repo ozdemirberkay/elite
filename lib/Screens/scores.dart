@@ -1,26 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:elite/Screens/QuizEditProfile.dart';
-import 'package:elite/Screens/QuizSettings.dart';
 import 'package:elite/main.dart';
 import 'package:elite/model/QuizModels.dart';
 import 'package:elite/utils/AppWidget.dart';
 import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizConstant.dart';
 import 'package:elite/utils/QuizDataGenerator.dart';
-import 'package:elite/utils/QuizImages.dart';
 import 'package:elite/utils/QuizStrings.dart';
 
-class QuizProfile extends StatefulWidget {
-  static String tag = '/QuizProfile';
+class Scores extends StatefulWidget {
+  static String tag = '/Scores';
 
   @override
-  _QuizProfileState createState() => _QuizProfileState();
+  _ScoresState createState() => _ScoresState();
 }
 
-class _QuizProfileState extends State<QuizProfile> {
+class _ScoresState extends State<Scores> {
   late List<QuizBadgesModel> mList;
   late List<QuizScoresModel> mList1;
 
@@ -38,31 +34,35 @@ class _QuizProfileState extends State<QuizProfile> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Icon(Icons.light_mode, color: Colors.amber),
-                Switch(
-                  value: appStore.isDarkModeOn,
-                  activeColor: appColorPrimary,
-                  onChanged: (s) {
-                    appStore.toggleDarkMode(value: s);
-                  },
-                ),
-                Icon(Icons.dark_mode,
-                    color: appStore.isDarkModeOn ? Colors.white : Colors.black),
+                appStore.isDarkModeOn
+                    ? InkWell(
+                        onTap: () {
+                          appStore.toggleDarkMode(value: false);
+                        },
+                        child: Icon(Icons.light_mode, color: Colors.amber))
+                    : InkWell(
+                        onTap: () {
+                          appStore.toggleDarkMode(value: true);
+                        },
+                        child: Icon(Icons.dark_mode,
+                            color: appStore.isDarkModeOn
+                                ? Colors.white
+                                : Colors.black)),
               ],
             ),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Container(
             width: width,
             decoration: boxDecoration(
                 radius: spacing_middle,
                 bgColor: context.cardColor,
                 showShadow: false),
-            margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+            margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
             child: Row(
               children: <Widget>[
                 text(
@@ -84,7 +84,7 @@ class _QuizProfileState extends State<QuizProfile> {
                   scrollDirection: Axis.vertical,
                   itemCount: mList1.length,
                   shrinkWrap: true,
-                  physics: ScrollPhysics(),
+                  physics: const ScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) =>
                       GestureDetector(
                         onTap: () {},
@@ -136,7 +136,7 @@ class _QuizProfileState extends State<QuizProfile> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          physics: ScrollPhysics(),
+          physics: const ScrollPhysics(),
           child: Container(color: context.cardColor, child: imgview),
         ),
       ),

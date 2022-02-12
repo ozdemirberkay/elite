@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:elite/Screens/QuizResult.dart';
+import 'package:elite/Screens/quiz_result.dart';
 import 'package:elite/main.dart';
 import 'package:elite/utils/AppWidget.dart';
 import 'package:elite/utils/QuizCard.dart';
@@ -47,13 +47,13 @@ class _QuizCardsState extends State<QuizCards> {
                     onPressed: () {
                       finish(context);
                     },
-                    icon: Icon(Icons.close, color: quiz_colorPrimary),
+                    icon: const Icon(Icons.close, color: quiz_colorPrimary),
                   ),
                   Expanded(
                     child: LinearProgressIndicator(
                       value: 0.5,
                       backgroundColor: textSecondaryColor.withOpacity(0.2),
-                      valueColor: AlwaysStoppedAnimation<Color>(
+                      valueColor: const AlwaysStoppedAnimation<Color>(
                         quiz_green,
                       ),
                     ).paddingAll(16),
@@ -96,7 +96,7 @@ class _QuizCardsState extends State<QuizCards> {
             onDragEnd: (drag) {
               if (x == 0) {
                 setState(() {
-                  QuizResult().launch(context);
+                  const QuizResult().launch(context);
                 });
               }
               removeCards(x);
@@ -116,8 +116,8 @@ class _QuizCardsState extends State<QuizCards> {
                         height: 200.0,
                         width: 320.0,
                         child: Container(
-                          margin: EdgeInsets.only(top: 50),
-                          padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
+                          margin: const EdgeInsets.only(top: 50),
+                          padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
                           child: text(planetCard[x].cardImage,
                               fontSize: textSizeLarge,
                               fontFamily: fontBold,
@@ -125,7 +125,8 @@ class _QuizCardsState extends State<QuizCards> {
                         ),
                       ),
                       Container(
-                          padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                          padding:
+                              const EdgeInsets.only(top: 10.0, bottom: 10.0),
                           child: Column(
                             children: <Widget>[
                               quizCardSelection("A.", planetCard[x].option1,
@@ -163,15 +164,15 @@ class _QuizCardsState extends State<QuizCards> {
                         height: 200.0,
                         width: 320.0,
                         child: Container(
-                          margin: EdgeInsets.only(top: 50),
-                          padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
+                          margin: const EdgeInsets.only(top: 50),
+                          padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
                           child: text(planetCard[x].cardImage,
                               fontSize: textSizeLarge,
                               fontFamily: fontBold,
                               isLongText: true),
                         )),
                     Container(
-                      padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                       child: Column(
                         children: <Widget>[
                           quizCardSelection("A.", planetCard[x].option1, () {
@@ -211,14 +212,14 @@ Widget quizCardSelection(var option, var option1, onPressed) {
       onPressed();
     },
     child: Container(
-      margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+      margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       decoration: boxDecoration(
         showShadow: false,
         bgColor: appStore.isDarkModeOn ? cardDarkColor : quiz_edit_background,
         radius: 10,
         color: quiz_view_color,
       ),
-      padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
       width: 320,
       child: Stack(
         alignment: Alignment.center,

@@ -1,13 +1,11 @@
+import 'package:elite/Screens/add.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:elite/Screens/QuizAllList.dart';
-import 'package:elite/Screens/QuizProfile.dart';
+import 'package:elite/Screens/kategoriler.dart';
+import 'package:elite/Screens/scores.dart';
 import 'package:elite/utils/QuizColors.dart';
-import 'package:elite/utils/QuizImages.dart';
 
 import '../main.dart';
-import 'QuizHome.dart';
 
 class QuizDashboard extends StatefulWidget {
   static String tag = '/QuizDashboard';
@@ -20,9 +18,9 @@ class _QuizDashboardState extends State<QuizDashboard> {
   var selectedIndex = 0;
 
   var pages = [
-    QuizAllList(),
-    QuizAllList(),
-    QuizProfile(),
+    Categories(),
+    Add(),
+    Scores(),
   ];
 
   @override
@@ -81,22 +79,23 @@ class _QuizDashboardState extends State<QuizDashboard> {
           border: Border.all(
             color: appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
           ),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          borderRadius: const BorderRadius.only(
+              topLeft: const Radius.circular(20),
+              topRight: const Radius.circular(20)),
           boxShadow: [
             BoxShadow(
                 color: appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
                 blurRadius: 10,
                 spreadRadius: 2,
-                offset: Offset(0, 3.0)),
+                offset: const Offset(0, 3.0)),
           ],
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 0.0, right: 0, top: 8),
+          padding: const EdgeInsets.only(left: 0.0, right: 0, top: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              quizItem(0, Icons.home_outlined, "Makaleler"),
+              quizItem(0, Icons.home_outlined, "Kategoriler"),
               quizItem(1, Icons.add_circle_outline, "Ekle"),
               quizItem(2, Icons.bar_chart, "Skorlar"),
             ],

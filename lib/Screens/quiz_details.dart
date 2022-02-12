@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:elite/model/QuizModels.dart';
@@ -8,7 +10,7 @@ import 'package:elite/utils/QuizDataGenerator.dart';
 import 'package:elite/utils/QuizStrings.dart';
 import 'package:elite/utils/QuizWidget.dart';
 
-import 'QuizCard.dart';
+import 'quiz_card.dart';
 
 class QuizDetails extends StatefulWidget {
   static String tag = '/QuizDetails';
