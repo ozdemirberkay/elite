@@ -1,5 +1,8 @@
 import 'package:elite/Screens/dashboard.dart';
+import 'package:elite/Screens/kategoriler.dart';
+import 'package:elite/main.dart';
 import 'package:elite/utils/AppWidget.dart';
+import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizConstant.dart';
 import 'package:elite/utils/QuizWidget.dart';
 import 'package:flutter/material.dart';
@@ -13,21 +16,103 @@ class Add extends StatefulWidget {
 }
 
 class _AddState extends State<Add> {
+  List<String> categoriList = ["Kategori Seç", "Art", "Sience"];
+  String selectedCategory = "Katagori Seç";
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
           Container(
+            decoration: BoxDecoration(
+              color: context.cardColor,
+              border: Border.all(
+                color: appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(20),
+              ),
+              boxShadow: [
+                BoxShadow(
+                    color: appStore.isDarkModeOn
+                        ? cardDarkColor
+                        : quiz_ShadowColor,
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 3.0)),
+              ],
+            ),
             margin: EdgeInsets.all(12.0),
-            decoration: boxDecoration(
-                bgColor: context.cardColor, showShadow: true, radius: 10),
             child: quizEditTextStyle("Makele Başlığı", isPassword: false),
           ),
           Container(
+            margin: EdgeInsets.all(12.0),
+            decoration: BoxDecoration(
+              color: context.cardColor,
+              border: Border.all(
+                color: appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(20),
+              ),
+              boxShadow: [
+                BoxShadow(
+                    color: appStore.isDarkModeOn
+                        ? cardDarkColor
+                        : quiz_ShadowColor,
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 3.0)),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DropdownButton(
+                isExpanded: true,
+                value: selectedCategory,
+                underline: Container(height: 0),
+                icon: Icon(Icons.arrow_drop_down),
+                style: primaryTextStyle(),
+                onChanged: (String? newValue) {
+                  setState(
+                    () {
+                      selectedCategory = newValue!;
+                    },
+                  );
+                },
+                items: categoriList.map<DropdownMenuItem<String>>(
+                  (String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  },
+                ).toList(),
+                itemHeight: 50,
+              ),
+            ),
+          ),
+          Container(
               margin: EdgeInsets.all(12.0),
-              decoration: boxDecoration(
-                  bgColor: context.cardColor, showShadow: true, radius: 10),
+              decoration: BoxDecoration(
+                color: context.cardColor,
+                border: Border.all(
+                  color:
+                      appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
+                ),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(20),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                      color: appStore.isDarkModeOn
+                          ? cardDarkColor
+                          : quiz_ShadowColor,
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                      offset: const Offset(0, 3.0)),
+                ],
+              ),
               child: SizedBox(
                 height: 300,
                 child: TextFormField(
@@ -44,8 +129,24 @@ class _AddState extends State<Add> {
               )),
           Container(
             margin: EdgeInsets.all(12.0),
-            decoration: boxDecoration(
-                bgColor: context.cardColor, showShadow: true, radius: 10),
+            decoration: BoxDecoration(
+              color: context.cardColor,
+              border: Border.all(
+                color: appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(20),
+              ),
+              boxShadow: [
+                BoxShadow(
+                    color: appStore.isDarkModeOn
+                        ? cardDarkColor
+                        : quiz_ShadowColor,
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 3.0)),
+              ],
+            ),
             child: Column(
               children: [
                 Padding(
@@ -113,9 +214,9 @@ class _AddState extends State<Add> {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(24.0),
-            child: quizButton(
-              textContent: "quiz_lbl_continue",
+            margin: EdgeInsets.all(12.0),
+            child: quizButtonAdd(
+              textContent: "Soru Ekle",
               onPressed: () {
                 setState(
                   () {
@@ -125,11 +226,19 @@ class _AddState extends State<Add> {
               },
             ),
           ),
-          Text("kategoryi seç"),
-          Text("textfield makale"),
-          Text("quiz sorısı alanı"),
-          Text("quiz sorısı ekleme buttonu"),
-          Text("gönder butonu"),
+          Container(
+            margin: EdgeInsets.all(12.0),
+            child: quizButton(
+              textContent: "Gönder",
+              onPressed: () {
+                setState(
+                  () {
+                    QuizDashboard().launch(context);
+                  },
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

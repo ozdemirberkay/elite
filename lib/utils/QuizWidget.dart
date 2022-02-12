@@ -80,6 +80,54 @@ class quizButtonState extends State<quizButton> {
 }
 
 // ignore: must_be_immutable, camel_case_types
+class quizButtonAdd extends StatefulWidget {
+  var textContent;
+
+  //   var icon;
+  VoidCallback onPressed;
+
+  quizButtonAdd({
+    required this.textContent,
+    required this.onPressed,
+    //   @required this.icon,
+  });
+
+  @override
+  quizButtonAddState createState() => quizButtonAddState();
+}
+
+// ignore: camel_case_types
+class quizButtonAddState extends State<quizButtonAdd> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: widget.onPressed,
+      child: Container(
+        decoration: boxDecoration(bgColor: quiz_colorPrimary, radius: 16),
+        padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Text(widget.textContent, style: boldTextStyle(color: white))
+                .center(),
+            Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle, color: quiz_colorPrimaryDark),
+                width: 35,
+                height: 35,
+                child: Icon(Icons.add, color: t8_white, size: 20).paddingAll(8),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable, camel_case_types
 class quizTopBar extends StatefulWidget {
   var titleName;
 
