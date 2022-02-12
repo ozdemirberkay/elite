@@ -63,17 +63,6 @@ class _QuizResultState extends State<QuizResult> {
                           text("5 out 5", textColor: quiz_textColorSecondary),
                         ],
                       ),
-                      footer: Container(
-                        transform: Matrix4.translationValues(0.0, -30.0, 0.0),
-                        decoration: boxDecoration(
-                            showShadow: true,
-                            bgColor: context.cardColor,
-                            radius: 8),
-                        padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
-                        child: new Text("+50 XP",
-                            style: new TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 17.0)),
-                      ),
                       progressColor: quiz_colorAccent,
                     ),
                     text("You are awesome!",
@@ -83,99 +72,6 @@ class _QuizResultState extends State<QuizResult> {
                   ],
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.all(16),
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      height: MediaQuery.of(context).size.width * 0.15,
-                      decoration: boxDecoration(
-                          radius: 10,
-                          bgColor: quiz_color_facebook,
-                          showShadow: true),
-                      child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: SvgPicture.asset(quiz_ic_facebook,
-                              color: quiz_white)),
-                    ).onTap(() {
-                      const url = 'https://www.facebook.com/';
-                      // ignore: unnecessary_null_comparison
-                      if (canLaunch(url) != null) {
-                        launch(url);
-                      } else {
-                        throw 'Could not launch $url';
-                      }
-                    }),
-                    Container(
-                      margin: EdgeInsets.all(16),
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      height: MediaQuery.of(context).size.width * 0.15,
-                      decoration: boxDecoration(
-                          radius: 10,
-                          bgColor: quiz_form_google,
-                          showShadow: true),
-                      child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: SvgPicture.asset(quiz_ic_google,
-                              color: quiz_white)),
-                    ).onTap(() {
-                      const url = 'https://www.google.com/';
-                      // ignore: unnecessary_null_comparison
-                      if (canLaunch(url) != null) {
-                        launch(url);
-                      } else {
-                        throw 'Could not launch $url';
-                      }
-                    }),
-                    Container(
-                      margin: EdgeInsets.all(16),
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      height: MediaQuery.of(context).size.width * 0.15,
-                      decoration: boxDecoration(
-                          radius: 10,
-                          bgColor: quiz_color_message,
-                          showShadow: true),
-                      child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: SvgPicture.asset(quiz_ic_mail,
-                              color: quiz_white)),
-                    ).onTap(() {
-                      const url = 'https://mail.google.com/';
-                      // ignore: unnecessary_null_comparison
-                      if (canLaunch(url) != null) {
-                        launch(url);
-                      } else {
-                        throw 'Could not launch $url';
-                      }
-                    }),
-                    Container(
-                      margin: EdgeInsets.all(16),
-                      width: MediaQuery.of(context).size.width * 0.15,
-                      height: MediaQuery.of(context).size.width * 0.15,
-                      decoration: boxDecoration(
-                          radius: 10,
-                          bgColor: quiz_color_twitter,
-                          showShadow: true),
-                      child: Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: SvgPicture.asset(quiz_ic_twitter,
-                              color: quiz_white)),
-                    ).onTap(() {
-                      print("https://twitter.com/");
-                      const url = 'https://twitter.com/';
-                      // ignore: unnecessary_null_comparison
-                      if (canLaunch(url) != null) {
-                        launch(url);
-                      } else {
-                        throw 'Could not launch $url';
-                      }
-                    }),
-                  ],
-                ),
-              )
             ],
           ),
         ),

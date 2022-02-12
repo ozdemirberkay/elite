@@ -106,7 +106,10 @@ class _QuizCardsState extends State<QuizCards> {
               child: GestureDetector(
                 child: Container(
                   decoration: boxDecoration(
-                      radius: 20, bgColor: quiz_white, showShadow: true),
+                      radius: 20,
+                      bgColor:
+                          appStore.isDarkModeOn ? cardDarkColor : quiz_white,
+                      showShadow: true),
                   child: Column(
                     children: <Widget>[
                       Container(
