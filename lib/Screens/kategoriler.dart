@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elite/Screens/article_details.dart';
 import 'package:elite/model/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -10,6 +9,7 @@ import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizConstant.dart';
 
 import '../main.dart';
+import 'category_details.dart';
 
 class Categories extends StatefulWidget {
   static String tag = '/Categories';
@@ -143,8 +143,8 @@ class _CategoriesState extends State<Categories> {
                       ),
                     ).cornerRadiusWithClipRRect(16).onTap(() {
                       ArticleDetails(
-                        categoryId: categoryList[index].id,
-                        articleId: "BFrTrgz3TnBhD01Z4BNQ",
+                        categoryID: categoryList[index].id,
+                        cateGoryTitle: categoryList[index].title,
                       ).launch(context);
                     });
                   },

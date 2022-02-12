@@ -17,8 +17,11 @@ import 'quiz_card.dart';
 class ArticleDetails extends StatefulWidget {
   static String tag = '/QuizDetails';
   final String categoryID;
+  final String cateGoryTitle;
 
-  const ArticleDetails({Key? key, required this.categoryID}) : super(key: key);
+  const ArticleDetails(
+      {Key? key, required this.categoryID, required this.cateGoryTitle})
+      : super(key: key);
   @override
   _ArticleDetailsState createState() => _ArticleDetailsState();
 }
@@ -36,8 +39,7 @@ class _ArticleDetailsState extends State<ArticleDetails> {
     final Stream<QuerySnapshot> articles = FirebaseFirestore.instance
         .collection('categories/${widget.categoryID}/articles')
         .snapshots();
-    ;
-
+    List<QuizTestModel> mList = quizGetData();
     return Scaffold(
       body: SingleChildScrollView(
         child: StreamBuilder<QuerySnapshot>(
@@ -58,62 +60,41 @@ class _ArticleDetailsState extends State<ArticleDetails> {
               );
             }
 
-            /**
-        
-            var article =
-                 snapshot.data!.data().map((DocumentSnapshot document) {
-               Map<String, dynamic> data =
-                   document.data()! as Map<String, dynamic>;
-               QuizTestModel quizTestModel = QuizTestModel();
-               quizTestModel.image = data["imgUrl"].toString();
-               quizTestModel.heading = "Eklenecek";
-               quizTestModel.description = "Burası da eklencek";
-               mListings.add(quizTestModel);
-             }).toList();
-
-       */
-
             articleList = snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data =
                   document.data()! as Map<String, dynamic>;
-              Article article = Article();
+              Article article = Article(
+                  imgUrl: data["imgUrl"],
+                  title: data["title"],
+                  body: data["body"]);
               article.id = document.id;
-              article.title = data["title"];
 
               return article;
             }).toList();
 
             return Column(
               children: <Widget>[
-                quizTopBar(widget.categoryID + " Makaleleri"),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 20,
-                        ),
-                        text("quiz_lbl_biology_amp_scientific_method",
-                            isLongText: true,
-                            fontFamily: fontBold,
-                            isCentered: true,
-                            fontSize: textSizeXLarge),
-                        text("quiz_text_4_to_8_lesson",
-                            textColor: quiz_textColorSecondary),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemCount: articleList.length,
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return Text(articleList[index].title.toString());
-                              // return quizList(articleList[index].toString(), index);
-                            }),
-                      ],
-                    ),
+                quizTopBar(widget.cateGoryTitle + " Makaleleri"),
+                SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 20,
+                      ),
+                      text("Makaleleri Oku Quizleri Çöz",
+                          isLongText: true,
+                          fontFamily: fontBold,
+                          isCentered: true,
+                          fontSize: textSizeXLarge),
+                      ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: articleList.length,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return quizList(articleList[index], index);
+                          }),
+                    ],
                   ),
                 )
               ],
@@ -125,13 +106,12 @@ class _ArticleDetailsState extends State<ArticleDetails> {
   }
 }
 
-// ignore: must_be_immutable, camel_case_types
 class quizList extends StatelessWidget {
   late var width;
-  late QuizTestModel model;
+  late Article article;
 
-  quizList(QuizTestModel model, int pos) {
-    this.model = model;
+  quizList(Article article, int pos) {
+    this.article = article;
   }
 
   @override
@@ -147,33 +127,20 @@ class quizList extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: quiz_color_setting),
-                width: width / 6.5,
-                height: width / 6.5,
-                padding: const EdgeInsets.all(10),
-                child: Image.asset(model.image),
+              CircleAvatar(
+                radius: 25,
+                backgroundImage: NetworkImage(article.imgUrl),
               ),
               16.width,
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: <Widget>[
-              //     Text(model.type,
-              //         style:
-              //             secondaryTextStyle(color: quiz_textColorSecondary)),
-              //     4.height,
-              //     Text(model.heading, style: boldTextStyle()),
-              //   ],
-              // )
+              Expanded(child: Text(article.title, style: boldTextStyle())),
             ],
           ),
           16.height,
-          Text(model.description,
+          Text(article.body.substring(1, 100) + "...",
               style: primaryTextStyle(color: quiz_textColorSecondary)),
           16.height,
           quizButton(
-              textContent: "Quize Başla",
+              textContent: "Makaleyi Oku",
               onPressed: () {
                 QuizCards().launch(context);
               })
