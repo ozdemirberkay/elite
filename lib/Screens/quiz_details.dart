@@ -11,14 +11,17 @@ import 'package:elite/utils/QuizWidget.dart';
 
 import 'quiz_card.dart';
 
-class QuizDetails extends StatefulWidget {
+class ArticleDetails extends StatefulWidget {
   static String tag = '/QuizDetails';
+  final String categoryName;
 
+  const ArticleDetails({Key? key, required this.categoryName})
+      : super(key: key);
   @override
-  _QuizDetailsState createState() => _QuizDetailsState();
+  _ArticleDetailsState createState() => _ArticleDetailsState();
 }
 
-class _QuizDetailsState extends State<QuizDetails> {
+class _ArticleDetailsState extends State<ArticleDetails> {
   late List<QuizTestModel> mList;
 
   @override
@@ -116,7 +119,7 @@ class quizList extends StatelessWidget {
               style: primaryTextStyle(color: quiz_textColorSecondary)),
           16.height,
           quizButton(
-              textContent: "quiz_lbl_begin",
+              textContent: "Quize Başla",
               onPressed: () {
                 QuizCards().launch(context);
               })

@@ -143,7 +143,7 @@ class _CategoriesState extends State<Categories> {
                         ],
                       ),
                     ).cornerRadiusWithClipRRect(16).onTap(() {
-                      QuizDetails().launch(context);
+                      ArticleDetails().launch(context);
                     });
                   },
                 );
