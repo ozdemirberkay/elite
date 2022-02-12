@@ -8,12 +8,12 @@ class Question {
   String? d;
 
   Question({
-    required this.id,
-    required this.question,
-    required this.answer,
-    required this.a,
-    required this.b,
-    required this.c,
-    required this.d,
+    this.id,
+    this.question,
+    this.answer,
+    this.a,
+    this.b,
+    this.c,
+    this.d,
   });
 }
