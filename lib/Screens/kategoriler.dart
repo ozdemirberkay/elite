@@ -20,7 +20,6 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> {
   List<Category> categoryList = [];
-  List<int> categoryTotalList = [];
 
   @override
   void initState() {
@@ -67,16 +66,11 @@ class _CategoriesState extends State<Categories> {
                   Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
                   Category category = Category(
+                    noa: data["noa"].toString(),
                     categoryImgUrl: data["categoryImgUrl"].toString(),
                     id: document.id.toString(),
                     title: data["title"].toString(),
                   );
-                  FirebaseFirestore.instance
-                      .collection('categories/${document.id}/articles')
-                      .get()
-                      .then((snap) {
-                    categoryTotalList.add(snap.size);
-                  });
 
                   return category;
                 }).toList();
@@ -126,7 +120,7 @@ class _CategoriesState extends State<Categories> {
                                 ).paddingOnly(
                                     top: 4, left: 16, right: 16, bottom: 4),
                                 text(
-                                  "${categoryTotalList[index]} Makale",
+                                  "${categoryList[index].noa} Makale",
                                   textColor: quiz_textColorSecondary,
                                   fontSize: textSizeMedium,
                                 ).paddingOnly(left: 16, right: 16, bottom: 16),
