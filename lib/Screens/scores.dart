@@ -172,23 +172,20 @@ class _ScoresState extends State<Scores> {
                 mListings.add(newQuizModel);
               }).toList();
 
-              return StaggeredGridView.countBuilder(
-                crossAxisCount: 4,
-                mainAxisSpacing: 4.0,
-                staggeredTileBuilder: (index) => StaggeredTile.fit(2),
-                scrollDirection: Axis.vertical,
-                itemCount: mListings.length,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      leading: Image.network(mListings[index].quizImage),
-                      title: Text(mListings[index].quizName),
-                      subtitle: Text("çözülen"),
-                    ),
-                  );
-                },
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: mListings.length,
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Card(
+                      child: ListTile(
+                        leading: Image.network(mListings[index].quizImage),
+                        title: Text(mListings[index].quizName),
+                        subtitle: Text("çözülen"),
+                      ),
+                    );
+                  },
+                ),
               );
             },
           ),
@@ -197,64 +194,3 @@ class _ScoresState extends State<Scores> {
     );
   }
 }
-/*
-
-
-Container(
-                  margin: EdgeInsets.all(8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16.0),
-                            topRight: Radius.circular(16.0)),
-                        child: CachedNetworkImage(
-                          placeholder: placeholderWidgetFn() as Widget Function(
-                              BuildContext, String)?,
-                          imageUrl: mListings[index].quizImage,
-                          height: context.width() * 0.4,
-                          width: MediaQuery.of(context).size.width / 0.25,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(16.0),
-                              bottomRight: Radius.circular(16.0)),
-                          color: context.cardColor,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            text(mListings[index].quizName,
-                                    fontSize: textSizeMedium,
-                                    maxLine: 2,
-                                    fontFamily: fontMedium)
-                                .paddingOnly(
-                                    top: 8, left: 16, right: 16, bottom: 8),
-                            text(mListings[index].totalQuiz,
-                                    textColor: quiz_textColorSecondary)
-                                .paddingOnly(left: 16, right: 16, bottom: 16),
-                            LinearProgressIndicator(
-                              value: 0.5,
-                              backgroundColor:
-                                  textSecondaryColor.withOpacity(0.2),
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(quiz_green),
-                            ).paddingOnly(left: 16, right: 16, bottom: 16),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ).cornerRadiusWithClipRRect(16).onTap(() {
-                  //QuizDetails().launch(context);
-                });
-
-
-
-
-
-*/
