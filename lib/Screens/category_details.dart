@@ -140,7 +140,7 @@ class quizList extends StatelessWidget {
             ],
           ),
           16.height,
-          Text(article.body.substring(1, 100) + "...",
+          Text(article.body.substring(0, 100) + "...",
               style: primaryTextStyle(color: quiz_textColorSecondary)),
           16.height,
           quizButton(
