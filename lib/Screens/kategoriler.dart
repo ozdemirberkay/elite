@@ -9,7 +9,7 @@ import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizConstant.dart';
 
 import '../main.dart';
-import 'quiz_details.dart';
+import 'category_details.dart';
 
 class Categories extends StatefulWidget {
   static String tag = '/Categories';
