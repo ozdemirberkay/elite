@@ -7,7 +7,6 @@ import 'package:elite/utils/AppWidget.dart';
 import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizConstant.dart';
 import 'package:elite/utils/QuizDataGenerator.dart';
-import 'package:elite/utils/QuizStrings.dart';
 
 class Scores extends StatefulWidget {
   static String tag = '/Scores';
@@ -33,30 +32,7 @@ class _ScoresState extends State<Scores> {
     final imgview = Container(
       child: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                appStore.isDarkModeOn
-                    ? InkWell(
-                        onTap: () {
-                          appStore.toggleDarkMode(value: false);
-                        },
-                        child: Icon(Icons.light_mode, color: Colors.amber))
-                    : InkWell(
-                        onTap: () {
-                          appStore.toggleDarkMode(value: true);
-                        },
-                        child: Icon(Icons.dark_mode,
-                            color: appStore.isDarkModeOn
-                                ? Colors.white
-                                : Colors.black)),
-              ],
-            ),
-          ),
-          const SizedBox(height: 30),
-          Container(
+          /* Container(
             width: width,
             decoration: boxDecoration(
                 radius: spacing_middle,
@@ -66,8 +42,8 @@ class _ScoresState extends State<Scores> {
             child: Row(
               children: <Widget>[
                 text(
-                  quiz_lbl_Scores,
-                  fontSize: textSizeMedium,
+                  "Skorlar",
+                  fontSize: textSizeLarge,
                   fontFamily: fontSemibold,
                   isCentered: true,
                   textColor:
@@ -76,6 +52,8 @@ class _ScoresState extends State<Scores> {
               ],
             ),
           ),
+       */
+          const SizedBox(height: 16),
           Container(
               decoration: boxDecoration(
                   bgColor: context.cardColor, radius: 10, showShadow: true),
@@ -135,6 +113,37 @@ class _ScoresState extends State<Scores> {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: text(
+            "Skorlar",
+            fontSize: textSizeLarge,
+            fontFamily: fontSemibold,
+            isCentered: true,
+            textColor: appStore.isDarkModeOn ? white : quiz_textColorPrimary,
+          ),
+          actions: [
+            appStore.isDarkModeOn
+                ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                        onTap: () {
+                          appStore.toggleDarkMode(value: false);
+                        },
+                        child: Icon(Icons.light_mode, color: Colors.amber)),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                        onTap: () {
+                          appStore.toggleDarkMode(value: true);
+                        },
+                        child: Icon(Icons.dark_mode,
+                            color: appStore.isDarkModeOn
+                                ? Colors.white
+                                : Colors.black)),
+                  ),
+          ],
+        ),
         body: SingleChildScrollView(
           physics: const ScrollPhysics(),
           child: Container(color: context.cardColor, child: imgview),

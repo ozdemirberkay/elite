@@ -7,7 +7,6 @@ import 'package:elite/utils/AppWidget.dart';
 import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizConstant.dart';
 import 'package:elite/utils/QuizDataGenerator.dart';
-import 'package:elite/utils/QuizStrings.dart';
 
 import '../main.dart';
 import 'quiz_details.dart';

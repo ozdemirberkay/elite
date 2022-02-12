@@ -7,7 +7,6 @@ import 'package:elite/utils/AppWidget.dart';
 import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizConstant.dart';
 import 'package:elite/utils/QuizDataGenerator.dart';
-import 'package:elite/utils/QuizStrings.dart';
 import 'package:elite/utils/QuizWidget.dart';
 
 import 'quiz_card.dart';
@@ -33,7 +32,7 @@ class _QuizDetailsState extends State<QuizDetails> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          quizTopBar(quiz_lbl_biology_basics),
+          quizTopBar("quiz_lbl_biology_basics"),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -41,12 +40,12 @@ class _QuizDetailsState extends State<QuizDetails> {
                   SizedBox(
                     height: 20,
                   ),
-                  text(quiz_lbl_biology_amp_scientific_method,
+                  text("quiz_lbl_biology_amp_scientific_method",
                       isLongText: true,
                       fontFamily: fontBold,
                       isCentered: true,
                       fontSize: textSizeXLarge),
-                  text(quiz_text_4_to_8_lesson,
+                  text("quiz_text_4_to_8_lesson",
                       textColor: quiz_textColorSecondary),
                   SizedBox(
                     height: 10,
@@ -117,7 +116,7 @@ class quizList extends StatelessWidget {
               style: primaryTextStyle(color: quiz_textColorSecondary)),
           16.height,
           quizButton(
-              textContent: quiz_lbl_begin,
+              textContent: "quiz_lbl_begin",
               onPressed: () {
                 QuizCards().launch(context);
               })
