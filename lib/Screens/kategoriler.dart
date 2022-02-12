@@ -58,7 +58,7 @@ class _CategoriesState extends State<Categories> {
                 }
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Text("Loading");
+                  return LinearProgressIndicator();
                 }
 
                 categoryList =
