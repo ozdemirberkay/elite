@@ -1,17 +1,17 @@
 import 'package:elite/model/question.dart';
 
 class Article {
-  String id;
-  String title;
-  String body;
+  String? id;
+  String? title;
+  String? body;
   String? imgUrl;
-  List<Question> question;
+  List<Question>? question;
 
   Article({
-    required this.id,
-    required this.title,
-    required this.body,
-    required this.imgUrl,
-    required this.question,
+    this.id,
+    this.title,
+    this.body,
+    this.imgUrl,
+    this.question,
   });
 }

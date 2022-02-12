@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elite/model/article.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:elite/model/QuizModels.dart';
@@ -23,29 +24,26 @@ class ArticleDetails extends StatefulWidget {
 }
 
 class _ArticleDetailsState extends State<ArticleDetails> {
-  late List<QuizTestModel> mList;
+  List<Article> articleList = [];
 
   @override
   void initState() {
     super.initState();
-    mList = quizGetData();
   }
-
-  List<QuizTestModel> mListings = [];
 
   @override
   Widget build(BuildContext context) {
-    final DocumentReference<Map<String, dynamic>> articles = FirebaseFirestore
-        .instance
-        .collection('categories')
-        .doc(widget.categoryID);
+    final Stream<QuerySnapshot> articles = FirebaseFirestore.instance
+        .collection('categories/${widget.categoryID}/articles')
+        .snapshots();
+    ;
 
     return Scaffold(
       body: SingleChildScrollView(
-        child: FutureBuilder<DocumentSnapshot>(
-          future: articles.get(),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: articles,
           builder:
-              (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               return Text('Something went wrong');
             }
@@ -54,28 +52,36 @@ class _ArticleDetailsState extends State<ArticleDetails> {
               return Expanded(
                 child: Center(
                     child: CircularProgressIndicator(
-                  color: appStore.isDarkModeOn ? Colors.white : Colors.black,
-                )),
+                        color: appStore.isDarkModeOn
+                            ? Colors.white
+                            : Colors.black)),
               );
             }
-            Map<String, dynamic> data =
-                snapshot.data!.data() as Map<String, dynamic>;
-            QuizTestModel quizTestModel = QuizTestModel();
-            quizTestModel.image = data["imgUrl"].toString();
-            quizTestModel.heading = "Eklenecek";
-            quizTestModel.description = "Burası da eklencek";
-            mListings.add(quizTestModel);
 
-            //   var article =
-            //       snapshot.data!.data().map((DocumentSnapshot document) {
-            //     Map<String, dynamic> data =
-            //         document.data()! as Map<String, dynamic>;
-            //     QuizTestModel quizTestModel = QuizTestModel();
-            //     quizTestModel.image = data["imgUrl"].toString();
-            //     quizTestModel.heading = "Eklenecek";
-            //     quizTestModel.description = "Burası da eklencek";
-            //     mListings.add(quizTestModel);
-            //   }).toList();
+            /**
+        
+            var article =
+                 snapshot.data!.data().map((DocumentSnapshot document) {
+               Map<String, dynamic> data =
+                   document.data()! as Map<String, dynamic>;
+               QuizTestModel quizTestModel = QuizTestModel();
+               quizTestModel.image = data["imgUrl"].toString();
+               quizTestModel.heading = "Eklenecek";
+               quizTestModel.description = "Burası da eklencek";
+               mListings.add(quizTestModel);
+             }).toList();
+
+       */
+
+            articleList = snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data()! as Map<String, dynamic>;
+              Article article = Article();
+              article.id = document.id;
+              article.title = data["title"];
+
+              return article;
+            }).toList();
 
             return Column(
               children: <Widget>[
@@ -99,11 +105,12 @@ class _ArticleDetailsState extends State<ArticleDetails> {
                         ),
                         ListView.builder(
                             scrollDirection: Axis.vertical,
-                            itemCount: mList.length,
+                            itemCount: articleList.length,
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return quizList(mList[index], index);
+                              return Text(articleList[index].title.toString());
+                              // return quizList(articleList[index].toString(), index);
                             }),
                       ],
                     ),

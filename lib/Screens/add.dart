@@ -288,6 +288,13 @@ class _AddState extends State<Add> {
                         "questions": questionListMap
                       };
                       reference.add(data);
+                      showDialog(
+                          context: context,
+                          builder: (_) {
+                            return AlertDialog(
+                              actions: [],
+                            );
+                          });
                     },
                   ),
                 ),

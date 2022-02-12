@@ -77,7 +77,6 @@ class _CategoriesState extends State<Categories> {
                     id: document.id.toString(),
                     title: data["title"].toString(),
                   );
-
                   return category;
                 }).toList();
 
