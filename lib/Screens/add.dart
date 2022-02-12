@@ -17,7 +17,7 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
   List<String> categoriList = ["Kategori Seç", "Art", "Sience"];
-  String selectedCategory = "Katagori Seç";
+  String selectedCategory = "Kategori Seç";
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
