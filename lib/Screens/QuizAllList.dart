@@ -150,7 +150,6 @@ class _QuizAllListState extends State<QuizAllList> {
           QuizDetails().launch(context);
         });
       },
-      //gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.60, mainAxisSpacing: 16, crossAxisSpacing: 16),
     );
   }
 
@@ -172,95 +171,51 @@ class _QuizAllListState extends State<QuizAllList> {
                       bgColor: context.cardColor,
                       showShadow: false),
                   margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
-                  child: Row(
-                    children: <Widget>[
-                      Flexible(
-                        child: GestureDetector(
-                          onTap: () {
-                            selectedPos = 1;
-                            setState(() {});
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(8.0),
-                            width: width,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(spacing_middle),
-                                  bottomLeft: Radius.circular(spacing_middle)),
-                              color: selectedPos == 1
-                                  ? appStore.isDarkModeOn
-                                      ? scaffoldDarkColor
-                                      : quiz_white
-                                  : Colors.transparent,
-                              border: Border.all(
-                                  color: selectedPos == 1
-                                      ? quiz_white
-                                      : Colors.transparent),
-                            ),
-                            child: text(
-                              quiz_lbl_All,
-                              fontSize: textSizeMedium,
-                              isCentered: true,
-                              fontFamily: fontMedium,
-                              textColor: selectedPos == 1
-                                  ? appStore.isDarkModeOn
-                                      ? white
-                                      : quiz_textColorPrimary
-                                  : quiz_textColorSecondary,
-                            ),
-                          ),
-                        ),
-                        flex: 1,
-                      ),
-                      Container(height: 40, width: 1, color: quiz_light_gray)
-                          .center(),
-                      Flexible(
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedPos = 2;
-                            });
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(8.0),
-                            width: width,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(spacing_middle),
-                                  bottomRight: Radius.circular(spacing_middle)),
+                  child: Flexible(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedPos = 2;
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(8.0),
+                        width: width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(spacing_middle),
+                              bottomRight: Radius.circular(spacing_middle)),
+                          color: selectedPos == 2
+                              ? appStore.isDarkModeOn
+                                  ? scaffoldDarkColor
+                                  : quiz_white
+                              : Colors.transparent,
+                          border: Border.all(
                               color: selectedPos == 2
-                                  ? appStore.isDarkModeOn
-                                      ? scaffoldDarkColor
-                                      : quiz_white
-                                  : Colors.transparent,
-                              border: Border.all(
-                                  color: selectedPos == 2
-                                      ? quiz_white
-                                      : Colors.transparent),
-                            ),
-                            child: text(
-                              quiz_lbl_Completed,
-                              fontSize: textSizeMedium,
-                              isCentered: true,
-                              fontFamily: fontMedium,
-                              textColor: selectedPos == 2
-                                  ? appStore.isDarkModeOn
-                                      ? white
-                                      : quiz_textColorPrimary
-                                  : quiz_textColorSecondary,
-                            ),
-                          ),
+                                  ? quiz_white
+                                  : Colors.transparent),
                         ),
-                        flex: 1,
+                        child: text(
+                          quiz_lbl_Completed,
+                          fontSize: textSizeMedium,
+                          isCentered: true,
+                          fontFamily: fontMedium,
+                          textColor: selectedPos == 2
+                              ? appStore.isDarkModeOn
+                                  ? white
+                                  : quiz_textColorPrimary
+                              : quiz_textColorSecondary,
+                        ),
                       ),
-                    ],
+                    ),
+                    flex: 1,
                   ),
                 ),
                 SingleChildScrollView(
                   physics: ScrollPhysics(),
                   child: Container(
                     margin: EdgeInsets.only(right: 8, left: 8),
-                    child: selectedPos == 1 ? quizAll() : quizCompleted(),
+                    child: quizCompleted(),
                   ),
                 ),
               ],
