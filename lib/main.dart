@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
     return Observer(
       builder: (_) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Online Quiz${!isMobile ? ' ${platformName()}' : ''}',
+        title: 'Elite Quiz',
         home: QuizDashboard(),
         theme: !appStore.isDarkModeOn
             ? AppThemeData.lightTheme
