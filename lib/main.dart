@@ -1,4 +1,4 @@
-import 'package:elite/DashboardScreen.dart';
+import 'package:elite/screen/main_srcreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -12,11 +12,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   showPage() {
     if (_selectedIndex == 0) {
-      return Container(
-        child: Text("Anasayfa"),
-      );
+      return const Text("Anasayfa");
     } else if (_selectedIndex == 1) {
-      return Container(child: Text("Ayarlar"));
+      return const Text("Ayarlar");
     }
   }
 
@@ -24,12 +22,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ELITE"),
+        title: const Text("ELITE"),
         centerTitle: true,
       ),
       body: showPage(),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Anasayfa"),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Ayarlar"),
         ],
