@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elite/Screens/article_details.dart';
 import 'package:elite/model/article.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -66,8 +67,8 @@ class _ArticlesState extends State<Articles> {
               Article article = Article(
                   imgUrl: data["imgUrl"],
                   title: data["title"],
-                  body: data["body"]);
-              article.id = document.id;
+                  body: data["body"],
+                  id: data["id"]);
 
               return article;
             }).toList();
@@ -92,7 +93,8 @@ class _ArticlesState extends State<Articles> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
-                            return quizList(articleList[index], index);
+                            return quizList(
+                                articleList[index], widget.categoryID);
                           }),
                     ],
                   ),
@@ -109,9 +111,11 @@ class _ArticlesState extends State<Articles> {
 class quizList extends StatelessWidget {
   late var width;
   late Article article;
+  late String category;
 
-  quizList(Article article, int pos) {
+  quizList(Article article, String category) {
     this.article = article;
+    this.category = category;
   }
 
   @override
@@ -139,7 +143,14 @@ class quizList extends StatelessWidget {
           Text(article.body.substring(1, 100) + "...",
               style: primaryTextStyle(color: quiz_textColorSecondary)),
           16.height,
-          quizButton(textContent: "Makaleyi Oku", onPressed: () {})
+          quizButton(
+              textContent: "Makaleyi Oku",
+              onPressed: () {
+                ArticleDetails(
+                  categoryId: category,
+                  articleId: article.id,
+                ).launch(context);
+              })
         ],
       ),
     );
