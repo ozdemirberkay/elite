@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -153,14 +154,50 @@ class _CategoriesState extends State<Categories> {
 
   @override
   Widget build(BuildContext context) {
+    final Stream<QuerySnapshot> categories =
+        FirebaseFirestore.instance.collection('categories').snapshots();
+
     var width = MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Container(
+          child: Expanded(
             child: Column(
               children: <Widget>[
+                StreamBuilder<QuerySnapshot>(
+                  stream: categories,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Something went wrong');
+                    }
+
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Text("Loading");
+                    }
+
+                    return Expanded(
+                      child: ListView(
+                        children: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
+                          print(
+                            data[0].toString(),
+                          );
+                          return ListTile(
+                            title: Text(
+                              data[0].toString(),
+                              style: TextStyle(color: Colors.amber),
+                            ),
+                            subtitle: Text(data[1].toString()),
+                          );
+                        }).toList(),
+                      ),
+                    );
+                  },
+                ),
                 const SizedBox(height: 40),
                 Container(
                   width: width,
@@ -178,13 +215,14 @@ class _CategoriesState extends State<Categories> {
                         appStore.isDarkModeOn ? white : quiz_textColorPrimary,
                   ),
                 ),
+                /*
                 SingleChildScrollView(
                   physics: const ScrollPhysics(),
                   child: Container(
                     margin: const EdgeInsets.only(right: 8, left: 8),
                     child: quizCompleted(),
                   ),
-                ),
+                ),*/
               ],
             ),
           ),

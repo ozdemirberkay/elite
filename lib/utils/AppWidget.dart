@@ -39,7 +39,8 @@ Widget text(
 Widget? Function(BuildContext, String) placeholderWidgetFn() =>
     (_, s) => placeholderWidget();
 
-Widget placeholderWidget() => Image.asset('images/grey.jpg', fit: BoxFit.cover);
+Widget placeholderWidget() => Placeholder();
+//    Image.asset('asstes/images/images/grey.jpg', fit: BoxFit.cover);
 
 BoxDecoration boxDecoration(
     {double radius = 2,
