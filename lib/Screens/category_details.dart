@@ -68,7 +68,7 @@ class _ArticlesState extends State<Articles> {
                   imgUrl: data["imgUrl"],
                   title: data["title"],
                   body: data["body"],
-                  id: data["id"]);
+                  id: document.id);
 
               return article;
             }).toList();
