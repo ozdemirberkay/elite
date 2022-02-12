@@ -158,7 +158,12 @@ class _ScoresState extends State<Scores> {
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
+                return Expanded(
+                  child: Center(
+                      child: CircularProgressIndicator(
+                    color: appStore.isDarkModeOn ? Colors.white : Colors.black,
+                  )),
+                );
               }
 
               var category =

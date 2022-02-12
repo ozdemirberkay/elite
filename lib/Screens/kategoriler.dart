@@ -58,7 +58,13 @@ class _CategoriesState extends State<Categories> {
                 }
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return Expanded(
+                    child: Center(
+                        child: CircularProgressIndicator(
+                            color: appStore.isDarkModeOn
+                                ? Colors.white
+                                : Colors.black)),
+                  );
                 }
 
                 categoryList =
