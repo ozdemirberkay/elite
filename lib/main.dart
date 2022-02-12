@@ -1,4 +1,4 @@
-import 'package:elite/Screens/QuizDashboard.dart';
+import 'package:elite/Screens/dashboard.dart';
 
 import 'package:elite/store/AppStore.dart';
 import 'package:elite/utils/AppTheme.dart';

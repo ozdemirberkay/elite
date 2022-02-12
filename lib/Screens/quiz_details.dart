@@ -10,7 +10,7 @@ import 'package:elite/utils/QuizDataGenerator.dart';
 import 'package:elite/utils/QuizStrings.dart';
 import 'package:elite/utils/QuizWidget.dart';
 
-import 'QuizCard.dart';
+import 'quiz_card.dart';
 
 class QuizDetails extends StatefulWidget {
   static String tag = '/QuizDetails';

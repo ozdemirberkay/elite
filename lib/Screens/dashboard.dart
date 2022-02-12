@@ -1,7 +1,8 @@
+import 'package:elite/Screens/add.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:elite/Screens/QuizAllList.dart';
-import 'package:elite/Screens/QuizProfile.dart';
+import 'package:elite/Screens/kategoriler.dart';
+import 'package:elite/Screens/scores.dart';
 import 'package:elite/utils/QuizColors.dart';
 
 import '../main.dart';
@@ -17,9 +18,9 @@ class _QuizDashboardState extends State<QuizDashboard> {
   var selectedIndex = 0;
 
   var pages = [
-    QuizAllList(),
-    QuizAllList(),
-    QuizProfile(),
+    Categories(),
+    Add(),
+    Scores(),
   ];
 
   @override
@@ -94,7 +95,7 @@ class _QuizDashboardState extends State<QuizDashboard> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              quizItem(0, Icons.home_outlined, "Makaleler"),
+              quizItem(0, Icons.home_outlined, "Kategoriler"),
               quizItem(1, Icons.add_circle_outline, "Ekle"),
               quizItem(2, Icons.bar_chart, "Skorlar"),
             ],

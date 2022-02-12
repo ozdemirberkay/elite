@@ -10,16 +10,16 @@ import 'package:elite/utils/QuizDataGenerator.dart';
 import 'package:elite/utils/QuizStrings.dart';
 
 import '../main.dart';
-import 'QuizDetails.dart';
+import 'quiz_details.dart';
 
-class QuizAllList extends StatefulWidget {
-  static String tag = '/QuizAllList';
+class Categories extends StatefulWidget {
+  static String tag = '/Categories';
 
   @override
-  _QuizAllListState createState() => _QuizAllListState();
+  _CategoriesState createState() => _CategoriesState();
 }
 
-class _QuizAllListState extends State<QuizAllList> {
+class _CategoriesState extends State<Categories> {
   late List<NewQuizModel> mListings;
 
   @override

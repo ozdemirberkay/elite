@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:elite/Screens/QuizResult.dart';
+import 'package:elite/Screens/quiz_result.dart';
 import 'package:elite/main.dart';
 import 'package:elite/utils/AppWidget.dart';
 import 'package:elite/utils/QuizCard.dart';

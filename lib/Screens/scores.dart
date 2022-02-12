@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:elite/main.dart';
@@ -10,14 +9,14 @@ import 'package:elite/utils/QuizConstant.dart';
 import 'package:elite/utils/QuizDataGenerator.dart';
 import 'package:elite/utils/QuizStrings.dart';
 
-class QuizProfile extends StatefulWidget {
-  static String tag = '/QuizProfile';
+class Scores extends StatefulWidget {
+  static String tag = '/Scores';
 
   @override
-  _QuizProfileState createState() => _QuizProfileState();
+  _ScoresState createState() => _ScoresState();
 }
 
-class _QuizProfileState extends State<QuizProfile> {
+class _ScoresState extends State<Scores> {
   late List<QuizBadgesModel> mList;
   late List<QuizScoresModel> mList1;
 
@@ -39,16 +38,20 @@ class _QuizProfileState extends State<QuizProfile> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                const Icon(Icons.light_mode, color: Colors.amber),
-                Switch(
-                  value: appStore.isDarkModeOn,
-                  activeColor: appColorPrimary,
-                  onChanged: (s) {
-                    appStore.toggleDarkMode(value: s);
-                  },
-                ),
-                Icon(Icons.dark_mode,
-                    color: appStore.isDarkModeOn ? Colors.white : Colors.black),
+                appStore.isDarkModeOn
+                    ? InkWell(
+                        onTap: () {
+                          appStore.toggleDarkMode(value: false);
+                        },
+                        child: Icon(Icons.light_mode, color: Colors.amber))
+                    : InkWell(
+                        onTap: () {
+                          appStore.toggleDarkMode(value: true);
+                        },
+                        child: Icon(Icons.dark_mode,
+                            color: appStore.isDarkModeOn
+                                ? Colors.white
+                                : Colors.black)),
               ],
             ),
           ),
