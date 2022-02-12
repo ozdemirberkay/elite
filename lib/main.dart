@@ -1,5 +1,4 @@
 import 'package:elite/Screens/QuizSignIn.dart';
-import 'package:elite/screen/main_srcreen.dart';
 import 'package:elite/store/AppStore.dart';
 import 'package:elite/utils/AppTheme.dart';
 import 'package:elite/utils/QuizConstant.dart';
@@ -39,14 +38,6 @@ class MyApp extends StatelessWidget {
         supportedLocales: LanguageDataModel.languageLocales(),
         localeResolutionCallback: (locale, supportedLocales) => locale,
       ),
-    );
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      home: const DashboardScreen(),
     );
   }
 }
