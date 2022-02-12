@@ -6,6 +6,7 @@ import 'package:elite/Screens/QuizProfile.dart';
 import 'package:elite/utils/QuizColors.dart';
 import 'package:elite/utils/QuizImages.dart';
 
+import '../main.dart';
 import 'QuizHome.dart';
 
 class QuizDashboard extends StatefulWidget {
@@ -78,13 +79,13 @@ class _QuizDashboardState extends State<QuizDashboard> {
         decoration: BoxDecoration(
           color: context.cardColor,
           border: Border.all(
-            color: quiz_ShadowColor,
+            color: appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
           ),
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20)),
           boxShadow: [
             BoxShadow(
-                color: quiz_ShadowColor,
+                color: appStore.isDarkModeOn ? cardDarkColor : quiz_ShadowColor,
                 blurRadius: 10,
                 spreadRadius: 2,
                 offset: Offset(0, 3.0)),
