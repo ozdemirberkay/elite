@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:elite/main.dart';
 import 'package:elite/model/QuizModels.dart';
@@ -18,18 +19,20 @@ class Scores extends StatefulWidget {
 
 class _ScoresState extends State<Scores> {
   late List<QuizBadgesModel> mList;
-  late List<QuizScoresModel> eskiKategoriler;
+  late List<QuizScoresModel> mList1;
 
   @override
   void initState() {
     super.initState();
-    eskiKategoriler = quizScoresData();
+    mList1 = quizScoresData();
   }
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-
+    List<NewQuizModel> mListings = [];
+    final Stream<QuerySnapshot> categories =
+        FirebaseFirestore.instance.collection('categories').snapshots();
     final imgview = Container(
       child: Column(
         children: <Widget>[
@@ -61,7 +64,7 @@ class _ScoresState extends State<Scores> {
               width: MediaQuery.of(context).size.width - 32,
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
-                  itemCount: eskiKategoriler.length,
+                  itemCount: mList1.length,
                   shrinkWrap: true,
                   physics: const ScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) =>
@@ -73,7 +76,7 @@ class _ScoresState extends State<Scores> {
                               CachedNetworkImage(
                                 placeholder: placeholderWidgetFn() as Widget
                                     Function(BuildContext, String)?,
-                                imageUrl: eskiKategoriler[index].img,
+                                imageUrl: mList1[index].img,
                                 height: 50,
                                 width: 50,
                                 fit: BoxFit.fill,
@@ -83,7 +86,7 @@ class _ScoresState extends State<Scores> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text(eskiKategoriler[index].title,
+                                  Text(mList1[index].title,
                                       style: boldTextStyle(
                                           color: appStore.isDarkModeOn
                                               ? white
@@ -94,9 +97,9 @@ class _ScoresState extends State<Scores> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      text(eskiKategoriler[index].totalQuiz,
+                                      text(mList1[index].totalQuiz,
                                           textColor: quiz_textColorSecondary),
-                                      text(eskiKategoriler[index].scores,
+                                      text(mList1[index].scores,
                                           textColor: quiz_textColorSecondary,
                                           fontSize: textSizeMedium,
                                           fontFamily: fontRegular)
@@ -146,10 +149,112 @@ class _ScoresState extends State<Scores> {
           ],
         ),
         body: SingleChildScrollView(
-          physics: const ScrollPhysics(),
-          child: Container(color: context.cardColor, child: imgview),
+          child: StreamBuilder<QuerySnapshot>(
+            stream: categories,
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong');
+              }
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Text("Loading");
+              }
+
+              var category =
+                  snapshot.data!.docs.map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()! as Map<String, dynamic>;
+                NewQuizModel newQuizModel = NewQuizModel();
+                newQuizModel.quizImage = data["categoryImgUrl"].toString();
+                newQuizModel.quizName = data["title"].toString();
+                newQuizModel.totalQuiz = "10 Makale";
+                mListings.add(newQuizModel);
+              }).toList();
+
+              return StaggeredGridView.countBuilder(
+                crossAxisCount: 4,
+                mainAxisSpacing: 4.0,
+                staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+                scrollDirection: Axis.vertical,
+                itemCount: mListings.length,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      leading: Image.network(mListings[index].quizImage),
+                      title: Text(mListings[index].quizName),
+                      subtitle: Text("çözülen"),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );
   }
 }
+/*
+
+
+Container(
+                  margin: EdgeInsets.all(8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16.0),
+                            topRight: Radius.circular(16.0)),
+                        child: CachedNetworkImage(
+                          placeholder: placeholderWidgetFn() as Widget Function(
+                              BuildContext, String)?,
+                          imageUrl: mListings[index].quizImage,
+                          height: context.width() * 0.4,
+                          width: MediaQuery.of(context).size.width / 0.25,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(16.0),
+                              bottomRight: Radius.circular(16.0)),
+                          color: context.cardColor,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            text(mListings[index].quizName,
+                                    fontSize: textSizeMedium,
+                                    maxLine: 2,
+                                    fontFamily: fontMedium)
+                                .paddingOnly(
+                                    top: 8, left: 16, right: 16, bottom: 8),
+                            text(mListings[index].totalQuiz,
+                                    textColor: quiz_textColorSecondary)
+                                .paddingOnly(left: 16, right: 16, bottom: 16),
+                            LinearProgressIndicator(
+                              value: 0.5,
+                              backgroundColor:
+                                  textSecondaryColor.withOpacity(0.2),
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(quiz_green),
+                            ).paddingOnly(left: 16, right: 16, bottom: 16),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ).cornerRadiusWithClipRRect(16).onTap(() {
+                  //QuizDetails().launch(context);
+                });
+
+
+
+
+
+*/
