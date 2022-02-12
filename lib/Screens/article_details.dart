@@ -41,12 +41,13 @@ class _ArticleDetailsState extends State<ArticleDetails> {
             child: Column(
               children: [
                 SizedBox(
+                  height: 300,
                   child: Image(
                     image: NetworkImage(article.imgUrl.toString()),
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Text(article.title.toString()),
-                Text(article.imgUrl.toString()),
                 Text(article.body.toString()),
                 Container(
                   margin: const EdgeInsets.all(12.0),
