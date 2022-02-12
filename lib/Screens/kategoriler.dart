@@ -58,7 +58,7 @@ class _CategoriesState extends State<Categories> {
                 }
 
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator());
                 }
 
                 categoryList =
