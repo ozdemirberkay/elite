@@ -118,6 +118,8 @@ class _ScoresState extends State<Scores> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
           title: text(
             "Skorlar",
             fontSize: textSizeLarge,
