@@ -143,7 +143,8 @@ class _CategoriesState extends State<Categories> {
                         ],
                       ),
                     ).cornerRadiusWithClipRRect(16).onTap(() {
-                      ArticleDetails().launch(context);
+                      ArticleDetails(categoryID: categoryList[index].id)
+                          .launch(context);
                     });
                   },
                 );
