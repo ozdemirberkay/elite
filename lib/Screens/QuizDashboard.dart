@@ -47,10 +47,8 @@ class _QuizDashboardState extends State<QuizDashboard> {
       alignment: Alignment.center,
       child: Column(
         children: <Widget>[
-          SvgPicture.asset(
+          Icon(
             icon,
-            width: 20,
-            height: 20,
             color: selectedIndex == pos ? quiz_colorPrimary : quiz_icon_color,
           ),
           Text(title,
@@ -97,9 +95,9 @@ class _QuizDashboardState extends State<QuizDashboard> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              quizItem(0, quiz_ic_homes, "Makaleler"),
-              quizItem(1, quiz_ic_quiz, "Ekle"),
-              quizItem(2, quiz_ic_user, "Skorlar"),
+              quizItem(0, Icons.home_outlined, "Makaleler"),
+              quizItem(1, Icons.add_circle_outline, "Ekle"),
+              quizItem(2, Icons.bar_chart, "Skorlar"),
             ],
           ),
         ),
