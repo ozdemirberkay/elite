@@ -169,29 +169,13 @@ class _QuizAllListState extends State<QuizAllList> {
                       bgColor: context.cardColor,
                       showShadow: false),
                   margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
-                  child: Flexible(
-                    child: Container(
-                      padding: EdgeInsets.all(8.0),
-                      width: width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(spacing_middle),
-                            bottomRight: Radius.circular(spacing_middle)),
-                        color: appStore.isDarkModeOn
-                            ? scaffoldDarkColor
-                            : quiz_white,
-                        border: Border.all(color: quiz_white),
-                      ),
-                      child: text(
-                        "KATEGORİLER",
-                        fontSize: textSizeMedium,
-                        isCentered: true,
-                        fontFamily: fontMedium,
-                        textColor: appStore.isDarkModeOn
-                            ? white
-                            : quiz_textColorPrimary,
-                      ),
-                    ),
+                  child: text(
+                    "KATEGORİLER",
+                    fontSize: textSizeMedium,
+                    isCentered: true,
+                    fontFamily: fontMedium,
+                    textColor:
+                        appStore.isDarkModeOn ? white : quiz_textColorPrimary,
                   ),
                 ),
                 SingleChildScrollView(
