@@ -1,6 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elite/Screens/quiz_card.dart';
+import 'package:elite/utils/AppWidget.dart';
+import 'package:elite/utils/QuizColors.dart';
+import 'package:elite/utils/QuizConstant.dart';
 import 'package:elite/utils/QuizWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 import '../model/article.dart';
 
@@ -38,25 +43,48 @@ class _ArticleDetailsState extends State<ArticleDetails> {
           //article.question = data["title"].toString();
           return Scaffold(
               body: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 300,
-                  child: Image(
-                    image: NetworkImage(article.imgUrl.toString()),
-                    fit: BoxFit.fill,
+            child: SafeArea(
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      icon: Icon(Icons.close, color: quiz_icon_color),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
                   ),
-                ),
-                Text(article.title.toString()),
-                Text(article.body.toString()),
-                Container(
-                  margin: const EdgeInsets.all(12.0),
-                  child: quizButton(
-                    textContent: "Quize Başla",
-                    onPressed: () {},
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child:
+                        text(article.title.toString(), fontSize: textSizeLarge),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 300,
+                    child: Image(
+                      image: NetworkImage(article.imgUrl.toString()),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(article.body.toString()),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(12.0),
+                    child: quizButton(
+                      textContent: "Quize Başla",
+                      onPressed: () {
+                        QuizCards(
+                          categoryId: widget.categoryId,
+                          articleId: widget.articleId,
+                        ).launch(context);
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ));
         });

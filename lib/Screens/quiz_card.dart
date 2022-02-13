@@ -9,6 +9,10 @@ import 'package:elite/utils/QuizConstant.dart';
 
 class QuizCards extends StatefulWidget {
   static String tag = '/QuizCards';
+  String categoryId;
+  String articleId;
+  QuizCards({Key? key, required this.categoryId, required this.articleId})
+      : super(key: key);
 
   @override
   _QuizCardsState createState() => _QuizCardsState();

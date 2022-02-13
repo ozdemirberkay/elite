@@ -86,7 +86,7 @@ class _ArticlesState extends State<Articles> {
                           isLongText: true,
                           fontFamily: fontBold,
                           isCentered: true,
-                          fontSize: textSizeXLarge),
+                          fontSize: textSizeMedium),
                       ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemCount: articleList.length,
