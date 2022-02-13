@@ -213,7 +213,7 @@ class _ScoresState extends State<Scores> {
                                 NetworkImage(mListings[index].quizImage),
                           ),
                           title: Text(mListings[index].quizName),
-                          subtitle: Text("çözülen"),
+                          subtitle: Text("30/50"),
                         );
                       },
                     ),
