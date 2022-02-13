@@ -26,6 +26,7 @@ class _AddState extends State<Add> {
   String? selectedCategory = null;
   String? title = "";
   String? body = "";
+  String? url = "";
   List<Map<String, dynamic>> question = [];
 
   @override
@@ -190,6 +191,41 @@ class _AddState extends State<Add> {
                         ),
                       ),
                     )),
+                Container(
+                  decoration: BoxDecoration(
+                    color: context.cardColor,
+                    border: Border.all(
+                      color: appStore.isDarkModeOn
+                          ? cardDarkColor
+                          : quiz_ShadowColor,
+                    ),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: appStore.isDarkModeOn
+                              ? cardDarkColor
+                              : quiz_ShadowColor,
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                          offset: const Offset(0, 3.0)),
+                    ],
+                  ),
+                  margin: const EdgeInsets.all(12.0),
+                  child: TextFormField(
+                    onChanged: (text) {
+                      url = text;
+                    },
+                    style: primaryTextStyle(),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.fromLTRB(16, 22, 16, 22),
+                      hintText: "Resim Bağlantısı",
+                      border: InputBorder.none,
+                      hintStyle: primaryTextStyle(),
+                    ),
+                  ),
+                ),
                 ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
@@ -222,7 +258,7 @@ class _AddState extends State<Add> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Align(
-                                child: text("$item. Soru"),
+                                child: text("${item + 1}. Soru"),
                                 alignment: Alignment.centerLeft,
                               ),
                             ),
@@ -285,6 +321,7 @@ class _AddState extends State<Add> {
                       var data = {
                         "body": body,
                         "title": title,
+                        "imgUrl": url,
                         "questions": questionListMap
                       };
                       reference.add(data);
