@@ -1,3 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elite/model/article.dart';
+import 'package:elite/model/question.dart';
+import 'package:elite/utils/QuizWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:elite/Screens/quiz_result.dart';
@@ -20,6 +24,7 @@ class QuizCards extends StatefulWidget {
 
 class _QuizCardsState extends State<QuizCards> {
   List<Widget> cardList = [];
+  Article2 article = Article2(question: []);
 
   void removeCards(index) {
     setState(() {
@@ -27,14 +32,41 @@ class _QuizCardsState extends State<QuizCards> {
     });
   }
 
+  void initialize() async {
+    DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore
+        .instance
+        .collection('categories')
+        .doc(widget.categoryId)
+        .collection("articles")
+        .doc(widget.articleId)
+        .get();
+
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    article.title = data["title"].toString();
+    article.body = data["body"].toString();
+    article.imgUrl = data["imgUrl"].toString();
+    article.question.add(Question(
+      id: "1",
+    ));
+    print(article.title);
+    cardList = _generateCards(article);
+  }
+
   @override
   void initState() {
     super.initState();
-    cardList = _generateCards();
+    initialize();
   }
 
   @override
   Widget build(BuildContext context) {
+    Article2 article = Article2(question: []);
+    DocumentReference documentReference = FirebaseFirestore.instance
+        .collection('categories')
+        .doc(widget.categoryId)
+        .collection("articles")
+        .doc(widget.articleId);
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -71,8 +103,9 @@ class _QuizCardsState extends State<QuizCards> {
     );
   }
 
-  List<Widget> _generateCards() {
+  List<Widget> _generateCards(Article2 article) {
     List<Quiz> planetCard = [];
+
     planetCard.add(
       Quiz("How many basic steps are there in scientific method?",
           "Eight Steps", "Ten Steps", "Two Steps", "One Steps", 70.0),
@@ -90,9 +123,15 @@ class _QuizCardsState extends State<QuizCards> {
       Quiz("How many basic steps are there in scientific method?",
           "Eight Steps", "Ten Steps", "One Steps", "Three Steps", 110.0),
     );
+    for (var element in article.question) {
+      planetCard.add(
+        Quiz("added?", "Eight Steps", "Ten Steps", "Two Steps", "One Steps",
+            70.0),
+      );
+    }
     List<Widget> cardList = [];
 
-    for (int x = 0; x < 5; x++) {
+    for (int x = 0; x < planetCard.length; x++) {
       cardList.add(
         Positioned(
           top: planetCard[x].topMargin,

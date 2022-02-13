@@ -21,13 +21,13 @@ class Article2 {
   String? title;
   String? body;
   String? imgUrl;
-  List<Question>? question;
+  List<Question> question = [];
 
   Article2({
     this.id,
     this.title,
     this.body,
     this.imgUrl,
-    this.question,
+    required this.question,
   });
 }

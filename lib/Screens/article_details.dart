@@ -22,7 +22,9 @@ class ArticleDetails extends StatefulWidget {
 class _ArticleDetailsState extends State<ArticleDetails> {
   @override
   Widget build(BuildContext context) {
-    Article2 article = Article2();
+    Article2 article = Article2(
+      question: [],
+    );
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('categories')
         .doc(widget.categoryId)
@@ -33,7 +35,28 @@ class _ArticleDetailsState extends State<ArticleDetails> {
         stream: documentReference.snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return CircularProgressIndicator();
+            return Scaffold(
+              body: SafeArea(
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                        icon: Icon(Icons.close, color: quiz_icon_color),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
           }
           Map<String, dynamic> data =
               snapshot.data!.data() as Map<String, dynamic>;
