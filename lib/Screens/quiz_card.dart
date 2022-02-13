@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elite/model/article.dart';
 import 'package:elite/model/question.dart';
@@ -45,11 +47,22 @@ class _QuizCardsState extends State<QuizCards> {
     article.title = data["title"].toString();
     article.body = data["body"].toString();
     article.imgUrl = data["imgUrl"].toString();
-    article.question.add(Question(
-      id: "1",
-    ));
+
+    for (var item in data["questions"]) {
+      article.question.add(Question(
+        id: "1",
+        question: item["question"],
+        answer: item["answer"],
+        a: item["a"],
+        b: item["b"],
+        c: item["c"],
+        d: item["d"],
+      ));
+    }
+
     print(article.title);
     cardList = _generateCards(article);
+    setState(() {});
   }
 
   @override
@@ -106,26 +119,14 @@ class _QuizCardsState extends State<QuizCards> {
   List<Widget> _generateCards(Article2 article) {
     List<Quiz> planetCard = [];
 
-    planetCard.add(
-      Quiz("How many basic steps are there in scientific method?",
-          "Eight Steps", "Ten Steps", "Two Steps", "One Steps", 70.0),
-    );
-    planetCard.add(
-      Quiz("Which blood vessels have the smallest diameter? ", "Capillaries",
-          "Arterioles", "Venules", "Lymphatic", 80.0),
-    );
-    planetCard.add(Quiz("The substrate of photo-respiration is", "Phruvic acid",
-        "Glucose", "Fructose", "Glycolate", 90.0));
-
-    planetCard.add(Quiz("Which one of these animal is jawless?", "Shark",
-        "Myxine", "Trygon", "Sphyrna", 100.0));
-    planetCard.add(
-      Quiz("How many basic steps are there in scientific method?",
-          "Eight Steps", "Ten Steps", "One Steps", "Three Steps", 110.0),
-    );
     for (var element in article.question) {
       planetCard.add(
-        Quiz("added?", "Eight Steps", "Ten Steps", "Two Steps", "One Steps",
+        Quiz(
+            element.question.toString(),
+            element.a.toString(),
+            element.b.toString(),
+            element.c.toString(),
+            element.d.toString(),
             70.0),
       );
     }
@@ -161,10 +162,11 @@ class _QuizCardsState extends State<QuizCards> {
                         child: Container(
                           margin: const EdgeInsets.only(top: 50),
                           padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
-                          child: text(planetCard[x].cardImage,
-                              fontSize: textSizeLarge,
-                              fontFamily: fontBold,
-                              isLongText: true),
+                          child: text(
+                            planetCard[x].cardImage,
+                            fontSize: textSizeLarge,
+                            fontFamily: fontBold,
+                          ),
                         ),
                       ),
                       Container(
@@ -209,10 +211,11 @@ class _QuizCardsState extends State<QuizCards> {
                         child: Container(
                           margin: const EdgeInsets.only(top: 50),
                           padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
-                          child: text(planetCard[x].cardImage,
-                              fontSize: textSizeLarge,
-                              fontFamily: fontBold,
-                              isLongText: true),
+                          child: text(
+                            planetCard[x].cardImage,
+                            fontSize: textSizeLarge,
+                            fontFamily: fontBold,
+                          ),
                         )),
                     Container(
                       padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
