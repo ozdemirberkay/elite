@@ -275,16 +275,11 @@ Widget quizCardSelection(var option, var option1, onPressed) {
       ),
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
       width: 320,
-      child: Stack(
-        alignment: Alignment.center,
+      child: Row(
         children: <Widget>[
-          Center(
-            child: text(option1, textColor: quiz_textColorSecondary),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: text(option, textColor: quiz_textColorSecondary),
-          )
+          Text(option, style: TextStyle(color: quiz_textColorSecondary)),
+          SizedBox(width: 5),
+          Text(option1, style: TextStyle(color: quiz_textColorSecondary)),
         ],
       ),
     ),
