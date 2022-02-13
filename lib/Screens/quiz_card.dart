@@ -180,18 +180,38 @@ class _QuizCardsState extends State<QuizCards> {
                             children: <Widget>[
                               quizCardSelection("A.", planetCard[x].option1,
                                   () {
+                                if (x == 0) {
+                                  setState(() {
+                                    const QuizResult().launch(context);
+                                  });
+                                }
                                 removeCards(x);
                               }),
                               quizCardSelection("B.", planetCard[x].option2,
                                   () {
+                                if (x == 0) {
+                                  setState(() {
+                                    const QuizResult().launch(context);
+                                  });
+                                }
                                 removeCards(x);
                               }),
                               quizCardSelection("C.", planetCard[x].option3,
                                   () {
+                                if (x == 0) {
+                                  setState(() {
+                                    const QuizResult().launch(context);
+                                  });
+                                }
                                 removeCards(x);
                               }),
                               quizCardSelection("D.", planetCard[x].option4,
                                   () {
+                                if (x == 0) {
+                                  setState(() {
+                                    const QuizResult().launch(context);
+                                  });
+                                }
                                 removeCards(x);
                               }),
                             ],
@@ -230,18 +250,38 @@ class _QuizCardsState extends State<QuizCards> {
                       child: Column(
                         children: <Widget>[
                           quizCardSelection("A.", planetCard[x].option1, () {
+                            if (x == 0) {
+                              setState(() {
+                                const QuizResult().launch(context);
+                              });
+                            }
                             removeCards(x);
                           }),
                           quizCardSelection("B.", planetCard[x].option2, () {
+                            if (x == 0) {
+                              setState(() {
+                                const QuizResult().launch(context);
+                              });
+                            }
                             removeCards(x);
                           }),
                           quizCardSelection("C.", planetCard[x].option3, () {
+                            if (x == 0) {
+                              setState(() {
+                                const QuizResult().launch(context);
+                              });
+                            }
                             removeCards(x);
                           }),
                           quizCardSelection(
                             "D.",
                             planetCard[x].option4,
                             () {
+                              if (x == 0) {
+                                setState(() {
+                                  const QuizResult().launch(context);
+                                });
+                              }
                               removeCards(x);
                             },
                           ),

@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elite/Screens/article_details.dart';
+import 'package:elite/model/article.dart';
 import 'package:elite/model/category.dart';
+import 'package:elite/utils/QuizWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -50,6 +53,17 @@ class _CategoriesState extends State<Categories> {
         body: SingleChildScrollView(
             child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: quizButton(
+                  textContent: "Günün Makalesi",
+                  onPressed: () {
+                    ArticleDetails(
+                      categoryId: "science",
+                      articleId: "NDPbUij6bKCFUcyuVJ9S",
+                    ).launch(context);
+                  }),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: StreamBuilder<QuerySnapshot>(
