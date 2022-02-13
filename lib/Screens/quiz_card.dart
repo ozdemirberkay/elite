@@ -162,10 +162,14 @@ class _QuizCardsState extends State<QuizCards> {
                         child: Container(
                           margin: const EdgeInsets.only(top: 50),
                           padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
-                          child: text(
-                            planetCard[x].cardImage,
-                            fontSize: textSizeLarge,
-                            fontFamily: fontBold,
+                          child: Center(
+                            child: Text(
+                              planetCard[x].cardImage,
+                              style: const TextStyle(
+                                fontSize: textSizeLarge,
+                                fontFamily: fontBold,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -211,10 +215,14 @@ class _QuizCardsState extends State<QuizCards> {
                         child: Container(
                           margin: const EdgeInsets.only(top: 50),
                           padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
-                          child: text(
-                            planetCard[x].cardImage,
-                            fontSize: textSizeLarge,
-                            fontFamily: fontBold,
+                          child: Center(
+                            child: Text(
+                              planetCard[x].cardImage,
+                              style: const TextStyle(
+                                fontSize: textSizeLarge,
+                                fontFamily: fontBold,
+                              ),
+                            ),
                           ),
                         )),
                     Container(

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:elite/utils/QuizWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -71,6 +72,16 @@ class _QuizResultState extends State<QuizResult> {
                         fontFamily: fontMedium, fontSize: textSizeLargeMedium),
                     text("Congratulations for getting\nall the answer correct!",
                         isLongText: true, textColor: quiz_textColorSecondary),
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: quizButton(
+                          textContent: "Quizi Bitir",
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                            // TODO
+                          }),
+                    )
                   ],
                 ),
               ),
