@@ -1,4 +1,5 @@
 import 'package:elite/Screens/add.dart';
+import 'package:elite/Screens/article_details.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:elite/Screens/kategoriler.dart';
@@ -21,6 +22,7 @@ class _QuizDashboardState extends State<QuizDashboard> {
     Categories(),
     Add(),
     Scores(),
+    ArticleDetails(categoryId: "art", articleId: "BFrTrgz3TnBhD01Z4BNQ"),
   ];
 
   @override
@@ -98,6 +100,7 @@ class _QuizDashboardState extends State<QuizDashboard> {
               quizItem(0, Icons.home_outlined, "Kategoriler"),
               quizItem(1, Icons.add_circle_outline, "Ekle"),
               quizItem(2, Icons.bar_chart, "Skorlar"),
+              quizItem(3, Icons.quiz_outlined, "Günün Makalesi"),
             ],
           ),
         ),
