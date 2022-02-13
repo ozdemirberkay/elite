@@ -68,10 +68,10 @@ class _QuizResultState extends State<QuizResult> {
                       ),
                       progressColor: quiz_colorAccent,
                     ),
-                    text("You are awesome!",
+                    text("Harikasın!",
                         fontFamily: fontMedium, fontSize: textSizeLargeMedium),
-                    text("Congratulations for getting\nall the answer correct!",
-                        isLongText: true, textColor: quiz_textColorSecondary),
+                    Text("Tüm soruları doğru cevapladığın için tebrikler!",
+                        style: TextStyle(color: quiz_textColorSecondary)),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: quizButton(
