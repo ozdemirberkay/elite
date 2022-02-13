@@ -65,51 +65,58 @@ class _ArticleDetailsState extends State<ArticleDetails> {
           article.imgUrl = data["imgUrl"].toString();
           //article.question = data["title"].toString();
           return Scaffold(
-              body: SingleChildScrollView(
-            child: SafeArea(
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                      icon: Icon(Icons.close, color: quiz_icon_color),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child:
-                        text(article.title.toString(), fontSize: textSizeLarge),
-                  ),
-                  SizedBox(
-                    height: 300,
-                    child: Image(
-                      image: NetworkImage(article.imgUrl.toString()),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(article.body.toString()),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(12.0),
-                    child: quizButton(
-                      textContent: "Quize Başla",
-                      onPressed: () {
-                        QuizCards(
-                          categoryId: widget.categoryId,
-                          articleId: widget.articleId,
-                        ).launch(context);
-                      },
-                    ),
-                  ),
-                ],
+              appBar: AppBar(
+                elevation: 0,
+                leading: IconButton(
+                  icon: Icon(Icons.close, color: quiz_icon_color),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
               ),
-            ),
-          ));
+              body: SingleChildScrollView(
+                child: SafeArea(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          article.title.toString(),
+                          style: TextStyle(
+                              fontFamily: fontBold, fontSize: textSizeLarge),
+                        ),
+                      ),
+                      Divider(color: quiz_icon_color),
+                      Container(
+                          padding: EdgeInsets.all(18.0),
+                          child: Image.network(article.imgUrl.toString())),
+                      Container(
+                        padding: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: context.cardColor),
+                        child: Text(
+                          article.body.toString(),
+                          style: TextStyle(
+                              fontFamily: fontBold, fontSize: textSizeMedium),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(12.0),
+                        child: quizButton(
+                          textContent: "Quize Başla",
+                          onPressed: () {
+                            QuizCards(
+                              categoryId: widget.categoryId,
+                              articleId: widget.articleId,
+                            ).launch(context);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ));
         });
   }
 }
