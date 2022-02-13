@@ -42,7 +42,7 @@ class _CategoriesState extends State<Categories> {
           title: Text(
             "KATEGORİLER",
             style: TextStyle(
-              color: appStore.isDarkModeOn ? white : quiz_textColorPrimary,
+              color: appStore.isDarkModeOn ? white : appBackgroundColorDark,
               fontSize: textSizeLarge,
             ),
           ),

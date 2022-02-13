@@ -125,7 +125,7 @@ class _ScoresState extends State<Scores> {
             "SKORLAR",
             fontSize: textSizeLarge,
             isCentered: true,
-            textColor: appStore.isDarkModeOn ? white : quiz_textColorPrimary,
+            textColor: appStore.isDarkModeOn ? white : appBackgroundColorDark,
           ),
           actions: [
             appStore.isDarkModeOn
