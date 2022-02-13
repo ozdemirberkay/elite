@@ -119,11 +119,11 @@ class _ScoresState extends State<Scores> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
+          centerTitle: true,
           backgroundColor: Colors.transparent,
           title: text(
-            "Skorlar",
+            "SKORLAR",
             fontSize: textSizeLarge,
-            fontFamily: fontSemibold,
             isCentered: true,
             textColor: appStore.isDarkModeOn ? white : quiz_textColorPrimary,
           ),
